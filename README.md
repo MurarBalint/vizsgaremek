@@ -19,7 +19,7 @@ Murrár Bálint
 ## 09.12
 
 **Tervek:**  
-- Prototípus – weboldal szerkezetének megvalósítása (HMD)  ✖️
+- Prototípus – weboldal szerkezetének megvalósítása (HMD)  ✔️
 - GitHub létrehozása, beállítások, feltöltés megkezdése (MB)  ✔️
 
 ---
@@ -27,8 +27,9 @@ Murrár Bálint
 ## 09.19
 
 **Tervek:**  
--  
-- 
+-	BackEnd adatbazis comunikáció (MB)
+-	BackEnd alapok (HMD)
+-	Adatbázis alapok (MB)
 
 ---
 
