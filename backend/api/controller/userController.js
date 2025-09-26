@@ -4,7 +4,7 @@ exports.getUsers = (req, res, next) =>
 {
     const sv = 
     {
-        name: "fasz",
+        name: "kispista",
         age: 5000
     }
 
