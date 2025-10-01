@@ -1,13 +1,8 @@
-const { Model } = require("sequelize")
+const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) =>
 {
-    class User_Profiles extends Model {
-        static associate(models) {
-      // Fordított kapcsolat User-hez
-      User_Profiles.belongsTo(models.User, { foreignKey: 'USER_ID', as: 'user' });
-    }
-    } 
+    class User_Profiles extends Model { } ;
 
     User_Profiles.init
     (
@@ -54,24 +49,16 @@ module.exports = (sequelize, DataTypes) =>
                 type: DataTypes.TEXT,
                 allowNull: true
             },
-
-            created_at:
-            {
-                type: DataTypes.DATE,
-                allowNull: false,
-                defaultValue: DataTypes.NOW
-            }
         },
 
         {
             sequelize,
-            modelName: "Users_Profile",
+            modelName: "User_Profiles",
             freezeTableName: true,
-            // createdAt: false,
-            createdAt: "created_at", 
+            createdAt: false,
             updatedAt: false
         }
-    )
+    );
 
-    return User_Profiles
-}
+    return User_Profiles;
+};

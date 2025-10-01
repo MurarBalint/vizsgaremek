@@ -1,17 +1,23 @@
-const UserRepository = require("../repositories/UserRepository")
+const { BadRequestError, NotFoundError } = require("../errors");
+
+const bcrypt = require("bcrypt");
 
 class UserService
 {
-    constructor(dbParam)
+    constructor(db)
     {
-        this.userRepository = new UserRepository(dbParam)
-
-    }
+        this.userRepository = require("../repositories")(db).userRepository;
+    };
 
     async getUsers()
     {
-        return await this.personrepository.getUsers()
-    }
-}
+        return await this.userRepository.getUsers();
+    };
 
-module.exports = UserService
+    async getUser_Profiles()
+    {
+        return await this.userRepository.getUser_Profiles();
+    };
+};
+
+module.exports = UserService;

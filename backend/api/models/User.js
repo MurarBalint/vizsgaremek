@@ -2,12 +2,7 @@ const { Model } = require("sequelize")
 
 module.exports = (sequelize, DataTypes) =>
 {
-    class User extends Model {
-        static associate(models) {
-          // 1:1 kapcsolat User és User_Profiles között
-          User.hasOne(models.User_Profiles, { foreignKey: 'USER_ID', as: 'profile' });
-        }
-    } 
+    class User extends Model { } 
 
     
     User.init
@@ -53,13 +48,6 @@ module.exports = (sequelize, DataTypes) =>
                 defaultValue: 1
             },
 
-            created_at:
-            {
-                type: DataTypes.DATE,
-                allowNull: false,
-                defaultValue: DataTypes.NOW
-            },
-
             last_login:
             {
                 type: DataTypes.DATE,
@@ -74,10 +62,8 @@ module.exports = (sequelize, DataTypes) =>
             sequelize,
             modelName: "Users",
             freezeTableName: true,
-            // createdAt: false,
             createdAt: "created_at", 
-            // updatedAt: false,
-            updatedAt: "last_login",
+            updatedAt: "updated_at", // ez meg valtozni fog
 
             indexes:
             [

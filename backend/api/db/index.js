@@ -1,4 +1,4 @@
-const { Sequelize } = require("sequelize")
+const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -10,9 +10,9 @@ const sequelize = new Sequelize(
         host: process.env.DB_HOST,
         logging: false
     }
-)
+);
 
-;(async () => 
+(async () => 
 {
     try 
     {
@@ -26,16 +26,16 @@ const sequelize = new Sequelize(
 })();
 
 
-const models = require("../models")(sequelize)
+const models = require("../models")(sequelize);
 
 const db = 
 {
     sequelize,
     Sequelize,
     ...models
-}
+};
 
-;(async () =>
+(async () =>
 {
     try 
     {
@@ -49,4 +49,4 @@ const db =
 
 
 
-module.exports = db
+module.exports = db;

@@ -1,13 +1,28 @@
+const db = require("../db");
+
+const { userService } = require("../services")(db);
 
 
-exports.getUsers = (req, res, next) =>
+exports.getUsers = async (req, res, next) =>
 {
-    const sv = 
+    try 
     {
-        name: "kispista",
-        age: 5000
-    }
+        res.status(200).json(await userService.getUsers());
+    } 
+    catch (error) 
+    {
+        next(error);
+    };
+};
 
-
-    res.status(200).json(sv)
-}
+exports.getUser_Profiles = async (req, res, next) =>
+{
+    try 
+    {
+        res.status(200).json(await userService.getUser_Profiles());
+    } 
+    catch (error) 
+    {
+        next(error);  
+    };
+};
