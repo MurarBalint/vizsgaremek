@@ -37,16 +37,16 @@ Murrár Bálint
 ## 09.26
 
 **Tervek:**  
-- User táblát kivetjük és kiíratjuk a usereket (admin felült alapjai)
-- User táblát modositjuk, deletelni, createlni
-- Frontend külsejét kezdjük ell
+- Táblákat visszaadja adatbázisból (admin felült alapjai) (MB) ✔️
+- Táblákat  deletelni, createlni (MB) ✔️
+- Frontend külsejét kezdjük ell (HMD) ✔️
 
 ---
 
 ## 10.03
 
 **Tervek:**  
-- 
-- 
-- 
+- Táblákat lehessen módosítani (MB)
+- React adminpanel alapja (HMD)
+- Regisztració és adatai továbbküldése adatbázisba (HMD)
 
