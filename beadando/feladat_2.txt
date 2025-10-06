@@ -1,0 +1,109 @@
+Ebben a feladatban egy 2D-s szimulációt készítünk, amely egy elhagyott űrállomáson játszódik. A főhős egy biztonsági tiszt, aki próbálja összegyűjteni az energia-cellákat és túlélni az androidok támadását, miközben a pályán barátságos droidok is segítik.
+
+1. Alapfeltételek
+
+Osztályok: minden játékelem az AllomasElem absztrakt osztályból származik.
+
+Kirajzolás: minden szimulációs lépés után frissül.
+
+Pálya mérete: 40x40-es Allomas mátrix.
+
+2. A pálya elemei
+
+Véletlenszerűen generált:
+
+1 biztonsági tiszt – játékos karakter.
+
+4 android – ellenséges egységek.
+
+5 energia-cella – ezeket kell összegyűjteni.
+
+3 mentőkabin – ha a tiszt rálép, azonnal teleportálja egy véletlen szabad mezőre.
+
+Légzsilip ajtók (akadályok) – áthatolhatatlan elemek.
+
+Vezérlőközpont – kijárat, aktív lesz, ha minden energia megvan.
+
+2 barátságos droid – gyengébb szövetséges egységek, akik automatikusan támadják az androidokat, ha a látóterükben vannak.
+
+3. Karakterek és tulajdonságok
+Biztonsági tiszt
+
+100 HP
+
+Sebzés: 20–35
+
+3x3 látótér, amit egyszer felfedez, azt megjegyzi.
+
+Teleportálás: ha rálép egy mentőkabinra → azonnal átdobja egy véletlen szabad mezőre.
+
+Cél: energiák összegyűjtése, androidok megölése (ha náluk energia van), kijutás a vezérlőközpontból.
+
+Androidok (ellenségek)
+
+100 HP
+
+Sebzés: 4–15
+
+Mozgás: lassabb, mint a tiszt (70%)
+
+3x3 látótér, nem emlékeznek a korábbi mezőkre.
+
+Viselkedés: energia begyűjtése, tiszt üldözése, ha látótérbe kerül.
+
+Barátságos droidok (szövetségesek)
+
+50 HP
+
+Sebzés: 2–7 (gyengébbek az androidoknál)
+
+Mozgás: lassabb a tisztnél, de gyorsabb az androidoknál.
+
+Látótér: 3x3, észlelik az androidokat.
+
+Viselkedés: ha androidot látnak → üldözik és harcolnak.
+
+Segítség: a tisztet nem támadják, és nem szedik fel az energia-cellákat.
+
+4. Harc szabályai
+
+A tiszt egyszerre csak 1 androiddal harcol, de több android is ütheti őt, ha odatévednek.
+
+A barátságos droidok bármelyik androidot megtámadják, de mivel gyengék, inkább lassítják/gyengítik őket, mintsem hogy egyedül legyőzzék.
+
+Ha a tiszt és egy barátságos droid egyszerre küzdenek egy androiddal, a sebzéseik összeadódnak.
+
+5. Játék logika
+
+Energia-cellák keresése és begyűjtése a fő cél.
+
+Mentőkabinok segítik a mozgást, de kiszámíthatatlan helyre dobják vissza a tisztet.
+
+Barátságos droidok időnként feltartják az androidokat, ezzel időt nyerve a tisztnek.
+
+Memória: a tiszt emlékszik a felfedezett cellákra és helyekre.
+
+Kijelzés: a tiszt és az androidok/barátságos droidok állapota minden kör végén látható.
+
+6. Játék vége
+
+Vesztés: a tiszt meghal.
+
+Győzelem: összes energia begyűjtése + vezérlőközpont aktiválása.
+
+Ez a verzió így már sokkal dinamikusabb, mert:
+
+A mentőkabin teleport véletlenszerűséget hoz, néha segít, néha hátráltat.
+
+A barátságos droidok adnak egy kis "csapatjáték" érzetet, de nem helyettesítik a tiszt erejét.
+
+- Minden ágensnek van tehát célja, amiket definiálni kell az osztályokban. Az ágens "gondolkodása", tehát a logikai motorja nem kerülhet ki az ágenshez tartozó osztályon kívülre, az ilyen megvalósítás értékelhetetlenné teszi a beadandót.
+- Minden ágens osztálynak rendelkeznie kell egy saját mappel, tehát nem a pályában kókányolunk és keresgetünk, hanem csinálunk egy "agyat", amit felfedezés során feltöltünk a felfedezett mezőkkel, így pl a Tisztnek egy jó barangolás után összeáll az egész pálya ismerete. Az androidoknak és a barátságos droidoknak nyilván nem fog, nekik csak a saját aktuális mátrixuk létezik.
+- Ebből következik ugyan, de az ágens a SAJÁT MAPJÁT vizsgálva dönt és cselekszik! Ennek nem betartása szintén értékelhetetlenné teszi a beadandót.
+- Az ágenseknek rendelkeziük kell egy combat() függvénnyel (bár ez egyértelmű), amiben a harcot bonyolítják.
+- A tiszt életereje, valamint az androidok száma statikusan követve van, és minden kör végén megjelenik a képernyő alján.
+- Harc esetén megjelenik a támadó android vagy androidok életereje a pálya alatt.
+- A játék akkor ér véget, ha:
+A tiszt meghal, mert elveszíti az életerejét a banditákkal való harcban.
+A seriff elhagyja a bázist.
+- Keríts rá egy grafikai logikát, hogyan jeleníted meg, hogy melyik ágens számára mely mezők láthatóak vagy felfedezettek. A pálya és a megjelenítés nyilván olvashatja az ágensek felfedezett mapját (pl.: az ágensnek van egy getMyDiscoveredMap() fgv-je), csak fordítva nem!
