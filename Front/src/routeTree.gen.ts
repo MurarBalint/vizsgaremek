@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as FriendsRouteImport } from './routes/friends'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RegisterIndexRouteImport } from './routes/register/index'
+import { Route as AdminPanelIndexRouteImport } from './routes/AdminPanel/index'
 import { Route as ProfilProfilIdIndexRouteImport } from './routes/profil/$profilId/index'
 
 const SettingsRoute = SettingsRouteImport.update({
@@ -29,6 +31,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegisterIndexRoute = RegisterIndexRouteImport.update({
+  id: '/register/',
+  path: '/register/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminPanelIndexRoute = AdminPanelIndexRouteImport.update({
+  id: '/AdminPanel/',
+  path: '/AdminPanel/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfilProfilIdIndexRoute = ProfilProfilIdIndexRouteImport.update({
   id: '/profil/$profilId/',
   path: '/profil/$profilId/',
@@ -39,12 +51,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/friends': typeof FriendsRoute
   '/settings': typeof SettingsRoute
+  '/AdminPanel': typeof AdminPanelIndexRoute
+  '/register': typeof RegisterIndexRoute
   '/profil/$profilId': typeof ProfilProfilIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/friends': typeof FriendsRoute
   '/settings': typeof SettingsRoute
+  '/AdminPanel': typeof AdminPanelIndexRoute
+  '/register': typeof RegisterIndexRoute
   '/profil/$profilId': typeof ProfilProfilIdIndexRoute
 }
 export interface FileRoutesById {
@@ -52,20 +68,43 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/friends': typeof FriendsRoute
   '/settings': typeof SettingsRoute
+  '/AdminPanel/': typeof AdminPanelIndexRoute
+  '/register/': typeof RegisterIndexRoute
   '/profil/$profilId/': typeof ProfilProfilIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/friends' | '/settings' | '/profil/$profilId'
+  fullPaths:
+    | '/'
+    | '/friends'
+    | '/settings'
+    | '/AdminPanel'
+    | '/register'
+    | '/profil/$profilId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/friends' | '/settings' | '/profil/$profilId'
-  id: '__root__' | '/' | '/friends' | '/settings' | '/profil/$profilId/'
+  to:
+    | '/'
+    | '/friends'
+    | '/settings'
+    | '/AdminPanel'
+    | '/register'
+    | '/profil/$profilId'
+  id:
+    | '__root__'
+    | '/'
+    | '/friends'
+    | '/settings'
+    | '/AdminPanel/'
+    | '/register/'
+    | '/profil/$profilId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FriendsRoute: typeof FriendsRoute
   SettingsRoute: typeof SettingsRoute
+  AdminPanelIndexRoute: typeof AdminPanelIndexRoute
+  RegisterIndexRoute: typeof RegisterIndexRoute
   ProfilProfilIdIndexRoute: typeof ProfilProfilIdIndexRoute
 }
 
@@ -92,6 +131,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/register/': {
+      id: '/register/'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/AdminPanel/': {
+      id: '/AdminPanel/'
+      path: '/AdminPanel'
+      fullPath: '/AdminPanel'
+      preLoaderRoute: typeof AdminPanelIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profil/$profilId/': {
       id: '/profil/$profilId/'
       path: '/profil/$profilId'
@@ -106,6 +159,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FriendsRoute: FriendsRoute,
   SettingsRoute: SettingsRoute,
+  AdminPanelIndexRoute: AdminPanelIndexRoute,
+  RegisterIndexRoute: RegisterIndexRoute,
   ProfilProfilIdIndexRoute: ProfilProfilIdIndexRoute,
 }
 export const routeTree = rootRouteImport

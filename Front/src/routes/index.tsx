@@ -6,21 +6,21 @@ export const Route = createFileRoute('/')({
 
 function HomePage() {
   return (
-  <div className="flex flex-col min-h-screen bg-white text-black">
+  <div className="flex flex-col bg-white text-black">
     {/* Online barátok */}
     <div className="flex gap-3 overflow-x-auto border-b border-gray-300 p-3 bg-gray-50">
       {[
         "Murrár Bálint",
         "Hartwig-Matos Dávid",
-        "Ádám Petró",
+        "Petró Ádám",
         "Kássa Gergő",
         "Zsozéatya",
         "Farkas Norbert ",
         "Daniel Peter Szabo",
         "Hunor Huszár",
-        "Bogi Fekete",
-        "Dominik Földi",
-        "Erik Bakai",
+        "Fekete Bogi",
+        "Földi Dominik",
+        "Bakai Erik",
 
       ].map((name, i) => (
         <div
@@ -34,7 +34,7 @@ function HomePage() {
               className="w-10 h-10 rounded-full object-cover"
           />
           {/* Név egy sorban */}
-          <span className="text-sm ml-2 truncate">{name}</span>
+          <span className="text-sm ml-2 truncate">{name.split(" ")[1]} {name.split(" ")[0]}</span>
       </div>
       ))}
     </div>
