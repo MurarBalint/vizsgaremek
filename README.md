@@ -46,7 +46,16 @@ Murrár Bálint
 ## 10.03
 
 **Tervek:**  
-- Táblákat lehessen módosítani (MB)
-- React adminpanel alapja (HMD)
-- Regisztració és adatai továbbküldése adatbázisba (HMD)
+- Táblákat lehessen módosítani (MB) ✔
+- React adminpanel alapja (HMD) ✔
+
+---
+## 10.10
+
+**Tervek:**  
+- ️Regisztració és adatai továbbküldése adatbázisba (HMD)
+- Api Upgradek -> post feltöltes
+
+---
+ 
 
