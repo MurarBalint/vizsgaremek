@@ -54,7 +54,7 @@ Murrár Bálint
 
 **Tervek:**  
 - ️Regisztració és adatai továbbküldése adatbázisba (HMD)
-- Api Upgradek -> post feltöltes
+- Api Upgradek -> post feltöltes (MB)
 
 ---
  
