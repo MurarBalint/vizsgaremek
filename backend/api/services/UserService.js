@@ -1,5 +1,6 @@
-const { userDelete } = require("../controller/userController");
-const { BadRequestError, NotFoundError } = require("../errors");
+const { BadRequestError } = require("../errors");
+const bcrypt = require("bcrypt");
+const salt = 14;
 
 class UserService
 {
@@ -35,6 +36,7 @@ class UserService
 
     async createUser(userData)
     {
+        userData.password_hash = await bcrypt.hash(userData.password, salt);
         return await this.userRepository.createUser(userData);
     };
 

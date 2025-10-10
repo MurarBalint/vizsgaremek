@@ -42,11 +42,11 @@ exports.userDelete = async (req, res, next) => {
 };
 
 exports.createUser = async (req, res, next) => {
-    const { email, password_hash, username } = req.body || {};
+    const { email, password, username } = req.body || {};
     try {
         res.status(200).json(await userService.createUser({
             email,
-            password_hash,
+            password,
             username,
         }));
     } catch (error) {
@@ -54,7 +54,6 @@ exports.createUser = async (req, res, next) => {
     }
 };
 
-// 🟢 UPDATE (PUT)
 exports.updateUser = async (req, res, next) => {
     try {
         const updatedUser = await userService.updateUser(req.userId, req.body);
