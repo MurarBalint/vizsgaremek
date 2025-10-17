@@ -7,48 +7,81 @@ class UserService
     constructor(db)
     {
         this.userRepository = require("../repositories")(db).userRepository;
-    };
+    }
 
     async getUsers()
     {
         return await this.userRepository.getUsers();
-    };
-
-    async getUser_Profiles()
-    {
-        return await this.userRepository.getUser_Profiles();
-    };
+    }
 
     async getUsersByPage(page)
     {
+        if (!page) {
+            throw new BadRequestError("hiányzó page paraméter");
+        }
+
         return await this.userRepository.getUsersByPage(page);
-    };
+    }
 
-    async getUser_ProfilesByPage(page)
+    async deleteUser(userId)
     {
-        return await this.userRepository.getUser_ProfilesByPage(page);
-    };
+        if (!userId) {
+            throw new BadRequestError("hiányzó user ID");
+        }
 
-    async userDelete(userId)
-    {
-        return await this.userRepository.userDelete(userId);
-    };
+        const deleteProcess = await this.userRepository.deleteUser(userId);
+
+        if (deleteProcess.deleted == 0) {
+            throw new BadRequestError("Nincs ilyen felhasznalo");
+        }
+        return deleteProcess;
+    }
 
     async createUser(userData)
     {
+        if (!userData.email) {
+            throw new BadRequestError("hiányzó email");
+        }
+        if (!userData.password) {
+            throw new BadRequestError("hiányzó password");
+        }
+        if (!userData.username) {
+            throw new BadRequestError("hiányzó username");
+        }
+
         userData.password_hash = await bcrypt.hash(userData.password, salt);
         return await this.userRepository.createUser(userData);
-    };
+    }
 
-    async updateUser(userId, updateData) {
+    async updateUser(userId, updateData) 
+    {   
         if (!userId) throw new BadRequestError("Hiányzó user ID");
-        if (!updateData || Object.keys(updateData).length === 0) {
-            throw new BadRequestError("Hiányzó frissítési adatok");
+        if (!updateData.email) {
+            throw new BadRequestError("Hiányzó email");
         }
-        return await this.userRepository.updateUser(userId, updateData);
+        if (!updateData.password) {
+            throw new BadRequestError("Hiányzó password");
+        }
+        if (!updateData.username) {
+            throw new BadRequestError("Hiányzó username");
+        }
+        updateData.password_hash = await bcrypt.hash(updateData.password, salt);
+
+        const affectedRows = await this.userRepository.updateUser(userId, updateData);
+
+        if (!affectedRows) {
+            return BadRequestError("user nem található", {details: `userId: ${userId}`})
+        }
+
+        const updateUser = await this.userRepository.getUser(userId);
+
+        if (!updateUser) {
+            throw new BadRequestError("a frissitett user nem található", {details: `userId: ${userId}`});
+        }
+        return updateUser; 
     }
 
     
-};
+}
 
 module.exports = UserService;

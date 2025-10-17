@@ -1,30 +1,35 @@
-const { raw } = require("mysql2");
 const { DbError } = require("../errors");
 
 class UserRepository {
     constructor(db) {
         this.User = db.User;
-        this.User_Profiles = db.User_Profiles;
+        this.User_Profile = db.User_Profile;
         this.sequelize = db.sequelize;
     }
 
     async getUsers() {
         try {
-            return await this.User.findAll({
-                attributes: ["ID", "email", "password_hash", "username", "role", "is_active", "created_at", "last_login"],
+            return await this.User.scope("allUserData").findAll({
+                include: [
+                    {
+                        model: this.User_Profile,
+                        as: "profile",
+                        scope: "allUser_ProfileData"
+                    }
+                ]
             });
         } catch (error) {
             throw new DbError("Failed to fetch users", { details: error.message });
         }
     }
 
-    async getUser_Profiles() {
+    async getUser(userId) {
         try {
-            return await this.User_Profiles.findAll({
-                attributes: ["USER_ID", "display_name", "birthdate", "birth_place", "schools", "bio", "avatar_url"],
+            return await this.User.scope("allUserData").findOne({
+                where: [ { ID: userId } ]  
             });
         } catch (error) {
-            throw new DbError("Failed to fetch user profiles", { details: error.message });
+            throw new DbError("Failed to fetch users", { details: error.message });
         }
     }
 
@@ -32,8 +37,7 @@ class UserRepository {
         const limit = 25;
         const offset = (page - 1) * limit;
         try {
-            return await this.User.findAll({
-                attributes: ["ID", "email", "password_hash", "username", "role", "is_active", "created_at", "last_login"],
+            return await this.User.scope("allUserData").findAll({
                 limit,
                 offset,
                 order: [["ID", "ASC"]],
@@ -43,28 +47,9 @@ class UserRepository {
         }
     }
 
-    async getUser_ProfilesByPage(page) {
-        const limit = 25;
-        const offset = (page - 1) * limit;
-        try {
-            return await this.User_Profiles.findAll({
-                attributes: ["USER_ID", "display_name", "birthdate", "birth_place", "schools", "bio", "avatar_url"],
-                limit,
-                offset,
-                order: [["USER_ID", "ASC"]],
-            });
-        } catch (error) {
-            throw new DbError("Rossz paraméter", { details: error.message });
-        }
-    }
-
-    async userDelete(userId) {
+    async deleteUser(userId) {
         try {
             const deletedRow = await this.User.destroy({ where: { ID: userId } });
-
-            if (deletedRow === 0) {
-                throw new DbError("Nincs ilyen user", { details: `userId: ${userId}` });
-            }
 
             return { success: true, deleted: deletedRow };
         } catch (error) {
@@ -89,21 +74,7 @@ class UserRepository {
                 where: { ID: userId },
             });
 
-            if (affectedRows === 0) {
-                throw new DbError("Felhasználó nem található", { details: `userId: ${userId}` });
-            }
-
-            // findOne a primary key mezőre
-            const updatedUser = await this.User.findOne({ 
-                where: { ID: userId },
-                raw: true 
-            });
-            
-            if (!updatedUser) {
-                throw new DbError("A frissített user nem található", { details: `userId: ${userId}` });
-            }
-
-            return updatedUser;
+            return affectedRows;
         } catch (error) {
             throw new DbError("Sikertelen frissítés", { details: error.message });
         }

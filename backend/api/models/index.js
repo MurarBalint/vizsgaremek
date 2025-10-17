@@ -3,18 +3,18 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) =>
 {
     const User = require("./User")(sequelize, DataTypes);
-    const User_Profiles = require("./User_Profiles")(sequelize, DataTypes);
+    const User_Profile = require("./User_Profile")(sequelize, DataTypes);
 
 
-    User.hasOne(User_Profiles, {
+    User.hasOne(User_Profile, {
         foreignKey: "USER_ID",
         as: "profile"
     });
 
-    User_Profiles.belongsTo(User, {
+    User_Profile.belongsTo(User, {
         foreignKey: "USER_ID",
         as: "user"
     });
 
-    return { User, User_Profiles };
+    return { User, User_Profile };
 };

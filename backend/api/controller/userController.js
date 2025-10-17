@@ -9,14 +9,6 @@ exports.getUsers = async (req, res, next) => {
     }
 };
 
-exports.getUser_Profiles = async (req, res, next) => {
-    try {
-        res.status(200).json(await userService.getUser_Profiles());
-    } catch (error) {
-        next(error);
-    }
-};
-
 exports.getUsersByPage = async (req, res, next) => {
     try {
         res.status(200).json(await userService.getUsersByPage(req.paramPage));
@@ -25,17 +17,9 @@ exports.getUsersByPage = async (req, res, next) => {
     }
 };
 
-exports.getUser_ProfilesByPage = async (req, res, next) => {
+exports.deleteUser = async (req, res, next) => {
     try {
-        res.status(200).json(await userService.getUser_ProfilesByPage(req.paramPage));
-    } catch (error) {
-        next(error);
-    }
-};
-
-exports.userDelete = async (req, res, next) => {
-    try {
-        res.status(200).json(await userService.userDelete(req.userId));
+        res.status(200).json(await userService.deleteUser(req.userId));
     } catch (error) {
         next(error);
     }

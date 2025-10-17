@@ -14,6 +14,7 @@ app.use(cors()); // ez engedélyezi az összes origin-t, azaz bárhonnan jöhet 
 
 
 const userRoutes = require("./api/routes/userRoutes");
+const user_profileRoutes = require("./api/routes/user_profileRoutes");
 
 const errorHandler = require("./api/midldewares/errorHandler");
 
@@ -24,6 +25,7 @@ require("./api/db/");
 app.use("/api", api);
 
 api.use("/", userRoutes);
+api.use("/", user_profileRoutes);
 
 api.use(errorHandler.notFound);
 

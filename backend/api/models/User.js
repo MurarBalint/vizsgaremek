@@ -19,24 +19,35 @@ module.exports = (sequelize, DataTypes) =>
             email:
             {
                 type: DataTypes.STRING(255),
+                unique: true,
                 allowNull: false
             },
 
             password_hash:
             {
                 type: DataTypes.STRING(255),
-                allowNull: false
+                allowNull: false,
+
+                get() {
+                    return `${this.getDataValue("password_hash").slice(0, 20)}`;
+                },
+
+                set(value) {
+
+                    this.setDataValue("password_hash", value);
+                }
             },
 
             username: 
             {
                 type: DataTypes.STRING(100),
+                unique: true,
                 allowNull: false
             },
 
             role:
             {
-                type: DataTypes.ENUM("user", "admin"),
+                type: DataTypes.ENUM("user", "admin", "moderator", "owner"),
                 allowNull: true,
                 defaultValue: "user"
             },
@@ -50,11 +61,22 @@ module.exports = (sequelize, DataTypes) =>
 
             last_login:
             {
-                type: DataTypes.DATE,
+                type: DataTypes.DATEONLY,
                 allowNull: true,
                 defaultValue: null
-            }
+            },
 
+            created_at:
+            {
+                type: DataTypes.DATEONLY,
+                allowNull: false
+            },
+
+            updated_at:
+            {
+                type: DataTypes.DATEONLY,
+                allowNull: false
+            }
             
         },
 
@@ -63,18 +85,14 @@ module.exports = (sequelize, DataTypes) =>
             modelName: "Users",
             freezeTableName: true,
             createdAt: "created_at", 
-            updatedAt: "updated_at", // ez meg valtozni fog
-
-            indexes:
-            [
-                {
-                    unique: true,
-                    fields: ["email", "username"]
+            updatedAt: "updated_at", 
+            scopes: {
+                allUserData:{
+                    attributes: ["ID", "email", "password_hash", "username", "role", "is_active", "created_at", "last_login"],
                 }
-            ]
-           
+            },
         }
     )
 
-    return User
+    return User;
 }
