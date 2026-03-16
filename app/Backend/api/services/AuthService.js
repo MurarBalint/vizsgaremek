@@ -15,7 +15,7 @@ class AuthService {
         this.notificationService = notificationService;
     }
     async isUserValid(userdata, transaction){
-        const user = await this.userService.getUser(userdata.ID,transaction)
+        const user = await this.userService.getUser(userdata.userID,transaction)
         if(!user){
             throw new NotFoundError("Hiba nincs ilyen fiók")
         }

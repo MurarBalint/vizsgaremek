@@ -120,6 +120,7 @@ if (process.env.NODE_ENV !== "production") {
 // =========================
 // API mount
 // =========================
+app.set('trust proxy', 'loopback')
 app.use("/api", api);
 
 // Tranzakció csatolása minden API kéréshez
