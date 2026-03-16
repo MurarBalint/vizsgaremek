@@ -14,7 +14,13 @@ class AuthService {
     setNotificationService(notificationService) {
         this.notificationService = notificationService;
     }
-
+    async isUserValid(userdata, transaction){
+        const user = await this.userService.getUser(userdata.ID,transaction)
+        if(!user){
+            throw new NotFoundError("Hiba nincs ilyen fiók")
+        }
+        return userdata;
+    }
     async registerUser(userData) {
         // Csak validált adatok előkészítése
         const pendingUser = await this.userService.validateUser({
