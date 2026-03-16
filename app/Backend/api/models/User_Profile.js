@@ -144,7 +144,7 @@ module.exports = (sequelize, DataTypes) => {
             {
                 type: DataTypes.TEXT,
                 allowNull: true,
-                defaultValue: "/dpfp.png"
+                defaultValue: `${process.env.FRONTEND_ASSET_URL || "http://localhost:3000"}/dpfp.png`
             },
         },
 
