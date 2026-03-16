@@ -93,7 +93,7 @@ exports.logout = async (req, res, next) => {
 
 exports.status = async (req, res, next) => {
     try {
-        res.status(200).json(await authService.isUserValid(req.token, req.transaction));
+        res.status(200).json(await authService.isUserValid(req.user, req.transaction));
     }
     catch (error) {
         next(error);
