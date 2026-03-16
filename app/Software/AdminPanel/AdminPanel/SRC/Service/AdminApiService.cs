@@ -27,7 +27,7 @@ namespace AdminPanel.SRC.Service
             if (!response.IsSuccessStatusCode)
             {
                 var errorObj = await response.Content.ReadFromJsonAsync<ErrorResponseModel>();
-                throw new Exception(errorObj?.Message ?? "Nem sikerült lekérni az admin statisztikát.");
+                throw new Exception(string.IsNullOrWhiteSpace(errorObj?.Message) ? "Nem sikerült lekérni az admin statisztikát." : errorObj.Message);
             }
 
             return await response.Content.ReadFromJsonAsync<AdminInfoModel>();
@@ -40,7 +40,7 @@ namespace AdminPanel.SRC.Service
             if (!response.IsSuccessStatusCode)
             {
                 var errorObj = await response.Content.ReadFromJsonAsync<ErrorResponseModel>();
-                throw new Exception(errorObj?.Message ?? "Nem sikerült lekérni az adminokat.");
+                throw new Exception(string.IsNullOrWhiteSpace(errorObj?.Message) ? "Nem sikerült lekérni az adminokat." : errorObj.Message);
             }
 
             return await response.Content.ReadFromJsonAsync<List<AdminUserModelWithProfile>>();
@@ -53,7 +53,7 @@ namespace AdminPanel.SRC.Service
             if (!response.IsSuccessStatusCode)
             {
                 var errorObj = await response.Content.ReadFromJsonAsync<ErrorResponseModel>();
-                throw new Exception(errorObj?.Message ?? "Nem sikerült lekérni az aktuális user státuszát.");
+                throw new Exception(string.IsNullOrWhiteSpace(errorObj?.Message) ? "Nem sikerült lekérni az aktuális user státuszát." : errorObj.Message);
             }
 
             return await response.Content.ReadFromJsonAsync<AuthStatusModel>();
@@ -74,7 +74,7 @@ namespace AdminPanel.SRC.Service
             if (!response.IsSuccessStatusCode)
             {
                 var errorObj = await response.Content.ReadFromJsonAsync<ErrorResponseModel>();
-                throw new Exception(errorObj?.Message ?? "Nem sikerült módosítani a role-t.");
+                throw new Exception(string.IsNullOrWhiteSpace(errorObj?.Message) ? "Nem sikerült módosítani a role-t." : errorObj.Message);
             }
         }
 
@@ -85,7 +85,7 @@ namespace AdminPanel.SRC.Service
             if (!response.IsSuccessStatusCode)
             {
                 var errorObj = await response.Content.ReadFromJsonAsync<ErrorResponseModel>();
-                throw new Exception(errorObj?.Message ?? "Nem sikerült törölni az admint.");
+                throw new Exception(string.IsNullOrWhiteSpace(errorObj?.Message) ? "Nem sikerült törölni az admint." : errorObj.Message);
             }
         }
     }

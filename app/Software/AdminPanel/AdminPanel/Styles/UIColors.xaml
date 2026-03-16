@@ -74,18 +74,28 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#3A3F5A"/>
+                <Setter Property="Background" Value="#BE123C"/>
                 <Setter Property="Foreground" Value="White"/>
-                <Setter Property="BorderBrush" Value="Green"/>
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="Margin" Value="-1,-1,-1,-1"/>
-                <Setter Property="Padding" Value="0,1,0,1"/>
-                
+                <Setter Property="BorderBrush" Value="#FECDD3"/>
+                <Setter Property="BorderThickness" Value="0,2,0,2"/>
             </Trigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="True"/>
+                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="#BE123C"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderBrush" Value="#FECDD3"/>
+                <Setter Property="BorderThickness" Value="0,2,0,2"/>
+            </MultiTrigger>
+
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#2B2D42"/>
+                <Setter Property="Background" Value="#9D174D"/>
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -204,7 +204,14 @@ namespace AdminPanel.SRC.ViewModel
                     return;
                 }
 
-                using var response = await ApiClient.Client.GetAsync(SelectedAvatarUrl);
+                var imageUrl = ApiClient.NormalizeImageUrl(SelectedAvatarUrl);
+                if (string.IsNullOrWhiteSpace(imageUrl))
+                {
+                    SelectedAvatarImage = GetDefaultAvatarImage();
+                    return;
+                }
+
+                using var response = await ApiClient.Client.GetAsync(imageUrl);
                 if (!response.IsSuccessStatusCode)
                 {
                     SelectedAvatarImage = GetDefaultAvatarImage();

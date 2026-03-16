@@ -22,5 +22,27 @@ namespace AdminPanel.SRC.Service
         {
             BaseAddress = new Uri("http://217.76.61.147")
         };
+        public static string? NormalizeImageUrl(string? url)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+                return null;
+
+            url = url.Trim();
+
+            if (url.StartsWith("http:///", StringComparison.OrdinalIgnoreCase))
+                url = "http://" + url.Substring("http:///".Length);
+
+            if (url.StartsWith("https:///", StringComparison.OrdinalIgnoreCase))
+                url = "https://" + url.Substring("https:///".Length);
+
+            if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
+                url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+                return url;
+
+            if (url.StartsWith("/", StringComparison.OrdinalIgnoreCase))
+                return $"https://mihirunk.hu{url}";
+
+            return $"https://mihirunk.hu/{url}";
+        }
     }
 }

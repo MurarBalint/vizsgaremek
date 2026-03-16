@@ -24,7 +24,7 @@ namespace AdminPanel.SRC.Service
             if (!response.IsSuccessStatusCode)
             {
                 var errorObj = await response.Content.ReadFromJsonAsync<ErrorResponseModel>();
-                throw new Exception(errorObj?.Message ?? "Nem sikerült lekérni a posztokat.");
+                throw new Exception(string.IsNullOrWhiteSpace(errorObj?.Message) ? "Nem sikerült lekérni a posztokat." : errorObj.Message);
             }
 
             return await response.Content.ReadFromJsonAsync<List<PostModel>>();
@@ -37,7 +37,7 @@ namespace AdminPanel.SRC.Service
             if (!response.IsSuccessStatusCode)
             {
                 var errorObj = await response.Content.ReadFromJsonAsync<ErrorResponseModel>();
-                throw new Exception(errorObj?.Message ?? "Nem sikerült törölni a posztot.");
+                throw new Exception(string.IsNullOrWhiteSpace(errorObj?.Message) ? "Nem sikerült törölni a posztot." : errorObj.Message);
             }
         }
 
@@ -48,7 +48,7 @@ namespace AdminPanel.SRC.Service
             if (!response.IsSuccessStatusCode)
             {
                 var errorObj = await response.Content.ReadFromJsonAsync<ErrorResponseModel>();
-                throw new Exception(errorObj?.Message ?? "Nem sikerült lekérni a kommenteket.");
+                throw new Exception(string.IsNullOrWhiteSpace(errorObj?.Message) ? "Nem sikerült lekérni a kommenteket." : errorObj.Message);
             }
 
             return await response.Content.ReadFromJsonAsync<List<PostCommentModel>>();
@@ -61,7 +61,7 @@ namespace AdminPanel.SRC.Service
             if (!response.IsSuccessStatusCode)
             {
                 var errorObj = await response.Content.ReadFromJsonAsync<ErrorResponseModel>();
-                throw new Exception(errorObj?.Message ?? "Nem sikerült törölni a kommentet.");
+                throw new Exception(string.IsNullOrWhiteSpace(errorObj?.Message) ? "Nem sikerült törölni a kommentet." : errorObj.Message);
             }
         }
     }

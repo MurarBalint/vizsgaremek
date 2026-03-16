@@ -252,7 +252,14 @@ namespace AdminPanel.SRC.ViewModel
                     return;
                 }
 
-                using var response = await ApiClient.Client.GetAsync(SelectedImageUrl);
+                var imageUrl = ApiClient.NormalizeImageUrl(SelectedImageUrl);
+                if (string.IsNullOrWhiteSpace(imageUrl))
+                {
+                    SelectedImage = null;
+                    return;
+                }
+
+                using var response = await ApiClient.Client.GetAsync(imageUrl);
                 if (!response.IsSuccessStatusCode)
                 {
                     SelectedImage = null;
