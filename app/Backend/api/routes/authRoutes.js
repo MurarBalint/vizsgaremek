@@ -47,17 +47,18 @@ module.exports = function authRoute(authLimiter) {
    *       properties:
    *         username:
    *           type: string
-   *           description: Allowed characters are letters, numbers, underscore only.
+   *           description: Username of the user.
    *           example: user
    *         email:
    *           type: string
-   *           description: Users email must be valid.
-   *           example: ad@ad.ad
+   *           format: email
+   *           description: Email is currently required by the backend login service.
+   *           example: user@example.com
    *         password:
    *           type: string
-   *           description: Must match password policy (8-21 chars, 1 lower, 1 upper, 1 digit, 1 special from @$!%*?&#+-).
-   *           example: 12345678
-   *       required: [username, password]
+   *           description: Plain-text password.
+   *           example: Jelszo123#
+   *       required: [username, email, password]
    *
    *     AdminLoginRequest:
    *       type: object
@@ -142,6 +143,23 @@ module.exports = function authRoute(authLimiter) {
    *         password: { type: string }
    *       required: [userId, password]
    *
+   *     AuthTokenDetailsResponse:
+   *       type: object
+   *       additionalProperties: false
+   *       properties:
+   *         active:
+   *           $ref: '#/components/schemas/SessionUser'
+   *       required: [active]
+   *
+   *     ConfirmRegistrationResponse:
+   *       type: object
+   *       additionalProperties: true
+   *       properties:
+   *         message: { type: string }
+   *         user: { type: object }
+   *         profile: { type: object }
+   *         settings: { type: object }
+   *
    *   responses:
    *     Unauthorized:
    *       description: Unauthorized (missing/invalid cookie token)
@@ -175,11 +193,11 @@ module.exports = function authRoute(authLimiter) {
    *         description: JWT token string
    *     responses:
    *       200:
-   *         description: Decoded token payload (may include standard JWT fields iat/exp)
+   *         description: Decoded token payload wrapper
    *         content:
    *           application/json:
    *             schema:
-   *               $ref: '#/components/schemas/SessionUser'
+   *               $ref: '#/components/schemas/AuthTokenDetailsResponse'
    *       400:
    *         $ref: '#/components/responses/BadRequest'
    */
@@ -331,16 +349,11 @@ module.exports = function authRoute(authLimiter) {
    *               avatar: { type: string, format: binary }
    *     responses:
    *       201:
-   *         description: Account and profile created
+   *         description: Account, profile, and settings created
    *         content:
    *           application/json:
    *             schema:
-   *               type: object
-   *               additionalProperties: true
-   *               properties:
-   *                 message: { type: string }
-   *                 user: { type: object }
-   *                 profile: { type: object }
+   *               $ref: '#/components/schemas/ConfirmRegistrationResponse'
    *       400:
    *         $ref: '#/components/responses/BadRequest'
    */

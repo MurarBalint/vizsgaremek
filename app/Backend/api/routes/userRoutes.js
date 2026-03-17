@@ -153,10 +153,12 @@ router.param("uniqIdentifier", paramHandler.paramUniqIdentifier);
  *     UpdateUserAdminRequest:
  *       type: object
  *       additionalProperties: false
- *       required: [email, password, username]
+ *       required: [email, username]
  *       properties:
  *         email: { type: string, format: email }
- *         password: { type: string }
+ *         password:
+ *           type: string
+ *           description: Optional. When omitted, the password is left unchanged.
  *         username: { type: string }
  *
  *   responses:

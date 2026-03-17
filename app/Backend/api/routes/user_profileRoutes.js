@@ -75,9 +75,53 @@ router.param("userId", paramHandler.paramUserId);
  *         birth_place: { type: string }
  *         schools: { type: string }
  *         bio: { type: string }
+ *         avatar_url:
+ *           type: string
+ *           nullable: true
+ *           description: Set to null to reset to the default avatar.
  *         avatar:
  *           type: string
  *           format: binary
+ *
+ *     ProfilePostSummary:
+ *       type: object
+ *       additionalProperties: true
+ *       properties:
+ *         ID: { type: integer, format: int64 }
+ *         USER_ID: { type: integer, format: int64 }
+ *         title: { type: string, nullable: true }
+ *         content: { type: string, nullable: true }
+ *         media_url: { type: string, nullable: true }
+ *         visibility: { type: string, nullable: true }
+ *         created_at: { type: string, format: date-time }
+ *         updated_at: { type: string, format: date-time }
+ *         likeCount: { type: integer }
+ *         dislikeCount: { type: integer }
+ *         myReaction:
+ *           type: string
+ *           enum: [like, dislike, none]
+ *
+ *     ProfileDetailResponse:
+ *       type: object
+ *       additionalProperties: true
+ *       allOf:
+ *         - $ref: '#/components/schemas/UserProfile'
+ *         - type: object
+ *           properties:
+ *             friendCount: { type: integer }
+ *             user:
+ *               type: object
+ *               additionalProperties: true
+ *               properties:
+ *                 ID: { type: integer, format: int64 }
+ *                 email: { type: string, format: email }
+ *                 username: { type: string }
+ *                 role: { type: string }
+ *                 created_at: { type: string, format: date-time }
+ *                 posts:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/ProfilePostSummary'
  *
  *     DeleteResult:
  *       type: object
@@ -190,12 +234,12 @@ router.get("/pages/:paramPage", [authMiddleware.userIsLoggedIn, authMiddleware.i
  *         description: User ID
  *     responses:
  *       200:
- *         description: Profile (or null if not found)
+ *         description: Profile with friendCount and up to 3 latest posts (or null if not found)
  *         content:
  *           application/json:
  *             schema:
  *               anyOf:
- *                 - $ref: '#/components/schemas/UserProfile'
+ *                 - $ref: '#/components/schemas/ProfileDetailResponse'
  *                 - type: "null"
  *       400:
  *         $ref: '#/components/responses/BadRequest'
@@ -296,6 +340,8 @@ router.post("/", [authMiddleware.userIsLoggedIn, authMiddleware.isAdmin], user_p
  *         $ref: '#/components/responses/BadRequest'
  *       401:
  *         $ref: '#/components/responses/Unauthorized'
+ *       403:
+ *         $ref: '#/components/responses/Forbidden'
  */
 router.patch(
   "/:userId",
