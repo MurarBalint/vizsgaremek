@@ -3,7 +3,6 @@ import { AuthGuard } from "@/components/custom/AuthGuard"
 import { AvatarFrame } from "@/components/custom/AvatarFrame"
 import { DefaultUIFrame } from "@/components/custom/DefaultUIFrame"
 import { Loader } from "@/components/Loader"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
   Pagination,

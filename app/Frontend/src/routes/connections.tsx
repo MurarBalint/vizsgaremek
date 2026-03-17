@@ -13,6 +13,7 @@ import { Annoyed, ShieldBan, ShieldQuestionMark, Users } from 'lucide-react'
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { authStatusRequest, GetMyconnections } from '@/components/axios/axiosClient'
+import type { AuthStatus, FriendWithConnectionStatus, UserWithProfile } from '@/components/axios/Types'
 import { KickButton } from '@/components/custom/Kick/kick'
 import { AcceptFriend, BlockUserFromrequest, DeletFriend, RemoveBlock, RemoveRequest } from '@/components/custom/UserConnectionButton/UserConnectionButton'
 
@@ -27,7 +28,7 @@ export const Route = createFileRoute('/connections')({
 
 
 function RouteComponent() {
-    const { data: auth } = useQuery<any>({
+    const { data: auth } = useQuery<{ data: AuthStatus }>({
         queryKey: ["auth-status"],
         queryFn: authStatusRequest,
         enabled: false,
@@ -47,7 +48,7 @@ function RouteComponent() {
                     </CardContent>
                 </Card>
                 <div className='flex-1 overflow-auto p-3'>
-                    {ShowMenu !== "FriendsMenu" ? ShowMenu !== "FriendRequestMenu" ? <BlackListMenu /> : <FriendRequestMenu myid={BigInt(auth?.data.userID || 0n)} /> : <FriendsMenu myid={BigInt(auth?.data.userID || 0n)} />}
+                    {ShowMenu !== "FriendsMenu" ? ShowMenu !== "FriendRequestMenu" ? <BlackListMenu /> : <FriendRequestMenu myid={auth?.data.userID || 0} /> : <FriendsMenu myid={auth?.data.userID || 0} />}
 
                 </div>
             </div>
@@ -55,7 +56,7 @@ function RouteComponent() {
     )
 }
 
-function FriendsMenu({ myid }: { myid: bigint, }) {
+function FriendsMenu({ myid }: { myid: number, }) {
     const { data: friends } = useQuery({
         queryKey: ["Connection", "Friends"],
         queryFn: () => GetMyconnections("accepted")
@@ -69,7 +70,7 @@ function FriendsMenu({ myid }: { myid: bigint, }) {
                 </CardTitle>
             </CardHeader>
             <CardContent className='flex gap-4 flex-wrap p-3'>
-                {friends?.data.map((item: any) => (
+                {friends?.data.map((item: FriendWithConnectionStatus) => (
                     <FriendsList id={item.ID} myid={myid} userData={item} key={item.ID} className='' />
                 ))
                 }
@@ -78,16 +79,16 @@ function FriendsMenu({ myid }: { myid: bigint, }) {
     )
 }
 
-export function FriendsList({ id, className, myid, userData, avatarClass }: { id: bigint, myid: bigint, className?: string, userData?: any, avatarClass?: string }) {
+export function FriendsList({ id, className, myid, userData, avatarClass }: { id: number, myid: number, className?: string, userData?: UserWithProfile, avatarClass?: string }) {
     return (
         <div className={`bg-rose-100 flex items-center rounded-xl p-2 px-4 gap-3 ${className}`}>
             <AvatarFrame className={`max-w-max max-h-min p-0 bg-slate-200 m-0 ${avatarClass}`} userData={userData} />
-            <KickButton id={id||userData.profile.ID} myid={`${myid}`} className="w-min" />
+            <KickButton id={id||userData?.profile?.ID ||0} myid={`${myid}`} className="w-min" />
         </div>
     )
 }
 
-function FriendRequestMenu({ myid }: { myid: bigint }) {
+function FriendRequestMenu({ myid }: { myid: number }) {
     const { data: requested } = useQuery({
         queryKey: ["Connection", "pending"],
         queryFn: () => GetMyconnections("pending")
@@ -101,7 +102,7 @@ function FriendRequestMenu({ myid }: { myid: bigint }) {
                 </CardTitle>
             </CardHeader>
             <CardContent className='flex gap-4 flex-wrap p-3'>
-                {requested?.data.map((item: any) => (
+                {requested?.data.map((item: FriendWithConnectionStatus) => (
                     <FriendsreqListPerEach item={item} myid={myid} key={Number(item?.ID)} />
                 ))
                 }
@@ -109,7 +110,7 @@ function FriendRequestMenu({ myid }: { myid: bigint }) {
         </Card>
     )
 }
-function FriendsreqListPerEach({ item }: { item: any, myid?: bigint }) {
+function FriendsreqListPerEach({ item }: { item: FriendWithConnectionStatus, myid?: number }) {
     return (
         <div className='px-4 bg-rose-100 flex flex-col items-center rounded-xl'>
             {item.connection_status == "waiting" ?
@@ -118,7 +119,7 @@ function FriendsreqListPerEach({ item }: { item: any, myid?: bigint }) {
                 </>
                 :
                 <>
-                    <AvatarFrame userid={item?.ID || -1n} userData={item} className='max-w-max max-h-min p-0 bg-slate-200 m-4' />
+                    <AvatarFrame userid={item?.ID || -1} userData={item} className='max-w-max max-h-min p-0 bg-slate-200 m-4' />
                 </>
             }
             <div className='grid grid-cols-2 gap-2 w-full'>
@@ -128,9 +129,9 @@ function FriendsreqListPerEach({ item }: { item: any, myid?: bigint }) {
                     </>
                     :
                     <>
-                        <AcceptFriend userID={item.ID || -1n} />
-                        <DeletFriend userID={item.ID || -1n} />
-                        <BlockUserFromrequest userID={item.ID || -1n} className="col-span-3" />
+                        <AcceptFriend userID={item.ID || -1} />
+                        <DeletFriend userID={item.ID || -1} />
+                        <BlockUserFromrequest userID={item.ID || -1} className="col-span-3" />
                     </>
                 }
             </div>
@@ -152,7 +153,7 @@ function BlackListMenu() {
                 </CardTitle>
             </CardHeader>
             <CardContent className='flex gap-4 flex-wrap p-3'>
-                {blocked?.data.map((item: any) => (
+                {blocked?.data.map((item: FriendWithConnectionStatus) => (
                     <div className='px-4 bg-rose-100 flex flex-col items-center rounded-xl'>
                         {item.connection_status != "blocked_me" ?
                             <>
@@ -165,7 +166,7 @@ function BlackListMenu() {
                         }
                         {item.connection_status != "blocked_me" ?
                             <>
-                                <RemoveBlock userID={item?.ID || -1n} />
+                                <RemoveBlock userID={item?.ID || -1} />
                             </>
                             :
                             <>

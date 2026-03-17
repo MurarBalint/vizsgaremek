@@ -12,11 +12,12 @@ import {
     HoverCardTrigger,
 } from "@/components/ui/hover-card"
 import { useNavigate } from "@tanstack/react-router"
+import type { ProfileData, UserWithProfile } from "@/components/axios/Types"
 
 
-export function AvatarFrame({ userid, className, userData }: { userid?: bigint, className?: string, userData?: any }) {
+export function AvatarFrame({ userid, className, userData }: { userid?: number, className?: string, userData?: UserWithProfile }) {
     const nav = useNavigate()
-    const { data: User, isLoading } = useQuery({
+    const { data: User, isLoading } = useQuery<{ user: ProfileData["user"]; profil: ProfileData }>({
         queryKey: ['avatar', userid],
         queryFn: () => getuserByid(`${userid}`),
         retry: 0,
@@ -94,11 +95,11 @@ export function AvatarFrame({ userid, className, userData }: { userid?: bigint, 
                     <Card key={userid} className={`bg-red-200 rounded-none rounded-l-3xl hover:bg-red-600 hover:text-white ${className}`}>
                         <CardContent className="p-0 flex">
                             <Avatar className="p-0 border-2 border-red-500 ">
-                                <AvatarImage src={`${userData.profile.avatar_url}`} />
-                                <AvatarFallback>{userData?.profile.first_name} {userData?.profile.last_name}</AvatarFallback>
+                                <AvatarImage src={`${userData.profile?.avatar_url}`} />
+                                <AvatarFallback>{userData?.profile?.first_name} {userData?.profile?.last_name}</AvatarFallback>
                             </Avatar>
                             <h3 className="scroll-m-20 text-xs font-semibold tracking-tight p-2">
-                                {userData?.profile.first_name} {userData?.profile.last_name}
+                                {userData?.profile?.first_name} {userData?.profile?.last_name}
                             </h3>
                         </CardContent>
                     </Card>
@@ -111,16 +112,16 @@ export function AvatarFrame({ userid, className, userData }: { userid?: bigint, 
                     </button>
                     <div className="flex items-center gap-4">
                         <Avatar className="h-16 w-16 border-2 border-[#ff3b3b]">
-                            <AvatarImage src={`${userData?.profile.avatar_url}`} />
+                            <AvatarImage src={`${userData?.profile?.avatar_url}`} />
                             <AvatarFallback>
-                                {userData?.profile.first_name?.[0]}
-                                {userData?.profile.last_name?.[0]}
+                                {userData?.profile?.first_name?.[0]}
+                                {userData?.profile?.last_name?.[0]}
                             </AvatarFallback>
                         </Avatar>
 
                         <div>
                             <p className="text-lg font-bold text-[#ff3b3b]">
-                                {userData?.profile.first_name} {userData?.profile.last_name}
+                                {userData?.profile?.first_name} {userData?.profile?.last_name}
                             </p>
 
                             <p className="text-xs text-gray-400">
@@ -139,7 +140,7 @@ export function AvatarFrame({ userid, className, userData }: { userid?: bigint, 
                             Rövid bemutatkozás
                         </p>
                         <p className="text-xs text-gray-300">
-                            {userData?.profile.bio || "Nincs megadva."}
+                            {userData?.profile?.bio || "Nincs megadva."}
                         </p>
                     </div>
                 </HoverCardContent>

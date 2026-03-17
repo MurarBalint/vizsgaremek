@@ -10,14 +10,15 @@ import {
 import { useMutation } from "@tanstack/react-query"
 import { SendVTCR } from "../axios/axiosClient"
 import { Spinner } from "../ui/spinner"
+import type { PasswordResetVerifyResponse } from "../axios/Types"
 
 
-export function PhaseOTP({ email, onSuccess }: { email: string, onSuccess: (accounts: any[]) => void }) {
+export function PhaseOTP({ email, onSuccess }: { email: string, onSuccess: (accounts: PasswordResetVerifyResponse) => void }) {
     const [code, setCode] = useState("")
     const { mutate: VTC, isPending } = useMutation({
         mutationFn: ({ email, verify_code }: { email: string; verify_code: string }) =>
             SendVTCR({ email, verify_code }),
-        onSuccess: (response: any) => {
+        onSuccess: (response: { data: PasswordResetVerifyResponse }) => {
             onSuccess(response.data)
         }
     })

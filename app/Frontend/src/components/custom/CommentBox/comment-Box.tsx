@@ -8,7 +8,8 @@ import { Trash2 } from "lucide-react"
 import { authStatusRequest, deletcomment } from "@/components/axios/axiosClient";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-export function Commentbox({ comment, ProfilID }: { comment?: any, ProfilID?:string }) {
+import type { ApiErrorResponse, UserPostComment } from "@/components/axios/Types";
+export function Commentbox({ comment, ProfilID }: { comment?: UserPostComment, ProfilID?:string }) {
     const queryclient = useQueryClient()
     const { data: auth } = useQuery({
         queryKey: ["auth-status"],
@@ -17,8 +18,8 @@ export function Commentbox({ comment, ProfilID }: { comment?: any, ProfilID?:str
     })
     const { mutate } = useMutation({
         mutationFn: (id: string) => deletcomment({ id }),
-        onError: (error: any) => {
-            toast.error(error.response.data.message)
+        onError: (error: { response?: { data?: ApiErrorResponse } }) => {
+            toast.error(error.response?.data?.message ?? "Hiba történt")
         },
         onSuccess: () => {
             toast.success("Sikeresen tőrőlted a kommented", {
@@ -35,11 +36,11 @@ export function Commentbox({ comment, ProfilID }: { comment?: any, ProfilID?:str
         <Card className="p-1">
             <CardContent className="flex px-1">
                 <div className="gap-3 flex p-1 w-full">
-                    <AvatarFrame userData={comment.user} className="p-0" />
+                    <AvatarFrame userData={comment?.user} className="p-0" />
                     <p className="flex-1 p-2">{comment?.comment}</p>
                     {auth?.data.userID == comment?.USER_ID && (
                         <Button variant={"destructive"}
-                            onClick={() => DeleteComment(comment?.ID)}
+                            onClick={() => DeleteComment(`${comment?.ID}`)}
                         ><Trash2></Trash2>
                         </Button>)}
                 </div>

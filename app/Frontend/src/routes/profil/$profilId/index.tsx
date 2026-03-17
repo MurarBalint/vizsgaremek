@@ -1,8 +1,8 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { DefaultUIFrame } from "@/components/custom/DefaultUIFrame/DefaultUIFrame";
 import { AuthGuard } from "@/components/custom/AuthGuard/AuthGuard";
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { authStatusRequest, deletpost, GetProfil } from '@/components/axios/axiosClient';
+import { useQuery } from '@tanstack/react-query';
+import { authStatusRequest, GetProfil } from '@/components/axios/axiosClient';
 import {
   Card,
   CardHeader,
@@ -13,17 +13,14 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { PopOver } from '@/components/custom/OpenMenus/OpenMenus';
-import { BadgeIcon, EllipsisVertical, Gavel, User } from 'lucide-react';
+import { EllipsisVertical, Gavel, User } from 'lucide-react';
 import { Loader } from '@/components/Loader/Loader';
 import { UserProfileModify } from '@/components/ProfilForms';
 import { BlockUser, ReqFriend } from '@/components/custom/UserConnectionButton/UserConnectionButton';
 import { PostAccord } from '@/components/PostComponents';
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -282,8 +279,8 @@ function ProfileMenu({ isMe, profilId, profil}: any) {
 function NotmyProfil({ profilId }: { profilId: any, profil: any }) {
   return (
     <>
-      <ReqFriend userID={BigInt(profilId)} />
-      <BlockUser userID={BigInt(profilId)} />
+      <ReqFriend userID={profilId} />
+      <BlockUser userID={profilId} />
     </>
   )
 }

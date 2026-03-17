@@ -63,8 +63,8 @@ export default function AdsFrame({
             ) : (
                 <img
                     src={data?.data.imagePath}
-                    alt={data?.data.subject}
-                    title={data?.data.title}
+                    alt={data?.data.subject || ""}
+                    title={data?.data.title || ""}
                     className={isBottom ? "w-full h-full object-contain rounded" : "w-full h-auto rounded"}
                 />
             )}

@@ -6,9 +6,9 @@ import { AddFriend, BlockUserID, connectionMangager, deletConnectionReqest } fro
 import { toast } from "sonner"
 
 
-export function ReqFriend({ className, userID }: { className?: string, userID: bigint }) {
+export function ReqFriend({ className, userID }: { className?: string, userID: number }) {
     const { mutate: addFriend, isPending } = useMutation({
-        mutationFn: ({ id }: { id: bigint }) => AddFriend({ id }),
+        mutationFn: ({ id }: { id: number }) => AddFriend({ id }),
         onError: (error: any) => {
             toast.error(error.response.data.message)
         },
@@ -28,11 +28,11 @@ export function ReqFriend({ className, userID }: { className?: string, userID: b
         </Button>
     )
 }
-export function AcceptFriend({ className, userID }: { className?: string, userID: bigint }) {
+export function AcceptFriend({ className, userID }: { className?: string, userID: number }) {
     const QueryClient = useQueryClient()
     const ConType = "accepted";
     const { mutate: AcceptFriend, isPending } = useMutation({
-        mutationFn: ({ id }: { id: bigint }) => connectionMangager({ id, ConType }),
+        mutationFn: ({ id }: { id: number }) => connectionMangager({ id, ConType }),
         onError: (error: any) => {
             toast.error(error.response.data.message)
         },
@@ -53,10 +53,10 @@ export function AcceptFriend({ className, userID }: { className?: string, userID
         </Button>
     )
 }
-export function DeletFriend({ className, userID }: { className?: string, userID: bigint }) {
+export function DeletFriend({ className, userID }: { className?: string, userID: number }) {
     const QueryClient = useQueryClient()
     const { mutate: Delete, isPending } = useMutation({
-        mutationFn: ({ id }: { id: bigint }) => deletConnectionReqest({ id }),
+        mutationFn: ({ id }: { id: number }) => deletConnectionReqest({ id }),
         onError: (error: any) => {
             toast.error(error.response.data.message)
         },
@@ -77,11 +77,11 @@ export function DeletFriend({ className, userID }: { className?: string, userID:
         </Button>
     )
 }
-export function BlockUserFromrequest({ className, userID }: { className?: string, userID: bigint }) {
+export function BlockUserFromrequest({ className, userID }: { className?: string, userID: number }) {
     const QueryClient = useQueryClient()
     const ConType = "blocked";
     const { mutate: AcceptFriend, isPending } = useMutation({
-        mutationFn: ({ id }: { id: bigint }) => connectionMangager({ id, ConType }),
+        mutationFn: ({ id }: { id: number }) => connectionMangager({ id, ConType }),
         onError: (error: any) => {
             toast.error(error.response.data.message)
         },
@@ -102,9 +102,9 @@ export function BlockUserFromrequest({ className, userID }: { className?: string
         </Button>
     )
 }
-export function BlockUser({ className, userID }: { className?: string, userID: bigint }) {
+export function BlockUser({ className, userID }: { className?: string, userID: number }) {
     const { mutate: AcceptFriend, isPending } = useMutation({
-        mutationFn: ({ id }: { id: bigint }) => BlockUserID({ id }),
+        mutationFn: ({ id }: { id: number }) => BlockUserID({ id }),
         onError: (error: any) => {
             toast.error(error.response.data.message)
         },
@@ -125,10 +125,10 @@ export function BlockUser({ className, userID }: { className?: string, userID: b
     )
 }
 
-export function RemoveRequest({ className, userID }: { className?: string, userID: bigint }) {
+export function RemoveRequest({ className, userID }: { className?: string, userID: number }) {
     const QueryClient = useQueryClient()
     const { mutate: Delete, isPending } = useMutation({
-        mutationFn: ({ id }: { id: bigint }) => deletConnectionReqest({ id }),
+        mutationFn: ({ id }: { id: number }) => deletConnectionReqest({ id }),
         onError: (error: any) => {
             toast.error(error.response.data.message)
         },
@@ -149,10 +149,10 @@ export function RemoveRequest({ className, userID }: { className?: string, userI
         </Button>
     )
 }
-export function RemoveBlock({ className, userID }: { className?: string, userID: bigint }) {
+export function RemoveBlock({ className, userID }: { className?: string, userID: number }) {
     const QueryClient = useQueryClient()
     const { mutate: Delete, isPending } = useMutation({
-        mutationFn: ({ id }: { id: bigint }) => deletConnectionReqest({ id }),
+        mutationFn: ({ id }: { id: number }) => deletConnectionReqest({ id }),
         onError: (error: any) => {
             toast.error(error.response.data.message)
         },

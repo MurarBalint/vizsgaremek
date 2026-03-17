@@ -1,6 +1,7 @@
+import type { PasswordResetVerifyAccount } from "../axios/Types"
 import { Button } from "../ui/button"
 
-export function PhaseSelectAccount({accounts,onSuccess}: {accounts: any[],onSuccess: (account: any) => void}) {
+export function PhaseSelectAccount({accounts,onSuccess}: {accounts: PasswordResetVerifyAccount[],onSuccess: (account: PasswordResetVerifyAccount) => void}) {
 
     return (
         <div>
@@ -8,9 +9,9 @@ export function PhaseSelectAccount({accounts,onSuccess}: {accounts: any[],onSucc
 
             <div className="flex flex-col gap-2">
                 {accounts.map(acc => (
-                    <div key={acc.userid}>
+                    <div key={acc.ID}>
                     <Button
-                        key={acc.userid}
+                        key={acc.ID}
                         onClick={() => onSuccess(acc)}
                         className="flex items-center gap-2"
                     >

@@ -4,7 +4,6 @@ import { Button } from "../../ui/button"
 import { GetKick, postKick } from "../../axios/axiosClient"
 import { Loader2, Check } from "lucide-react"
 import { cn } from "@/lib/utils"
-import type { AxiosResponse } from "axios"
 
 type KickRow = {
     ID: number
@@ -15,7 +14,7 @@ type KickRow = {
 }
 
 
-const Kick = (userId: bigint) => postKick(userId)
+const Kick = (userId: number) => postKick(userId)
 
 const DAY_MS = 24 * 60 * 60 * 1000
 function utcDayStamp(ymd: string) {
@@ -26,7 +25,7 @@ function daysSince(ymd: string) {
     return Math.floor((Date.now() - utcDayStamp(ymd)) / DAY_MS)
 }
 
-export function KickButton({ id, myid, className }: { id: bigint; myid: string, className: string }) {
+export function KickButton({ id, myid, className }: { id: number; myid: string, className: string }) {
     const qc = useQueryClient()
     
     const { data, isLoading } = useQuery({
@@ -59,7 +58,7 @@ export function KickButton({ id, myid, className }: { id: bigint; myid: string, 
     const disabled = isFresh
 
     const { mutate: doKick, isPending } = useMutation({
-        mutationFn: (userId: bigint) => Kick(userId),
+        mutationFn: (userId: number) => Kick(userId),
         onSuccess: async () => {
             await qc.refetchQueries({ queryKey: ["Rugas"] })
             await qc.refetchQueries({ queryKey: ["Connection", "Friends"], })

@@ -23,12 +23,12 @@ import { MakeCommentForPost } from '../axios/axiosClient'
 
 const formSchema = z.object({
     comment: z.string().min(3, { message: "Túl rövid" }).max(500, { message: "Túl Hosszú" }),
-    POST_ID: z.bigint().optional(),
+    POST_ID: z.number().optional(),
 })
 
 export type PostFormSchema = z.infer<typeof formSchema>
 
-export function CommentsAccord({ postID, commentsList, ProfilID }: { postID: bigint, commentsList?: any[],  ProfilID?:string}) {
+export function CommentsAccord({ postID, commentsList, ProfilID }: { postID: number, commentsList?: any[],  ProfilID?:string}) {
     const queryclient = useQueryClient();
     const { mutate: createComment } = useMutation({
         mutationFn: async (comment: PostFormSchema) => MakeCommentForPost(comment),
@@ -42,7 +42,7 @@ export function CommentsAccord({ postID, commentsList, ProfilID }: { postID: big
         resolver: zodResolver(formSchema),
         defaultValues: {
             comment: "",
-            POST_ID: BigInt(postID),
+            POST_ID: postID,
         },
     })
     function onSubmit(values: PostFormSchema) {

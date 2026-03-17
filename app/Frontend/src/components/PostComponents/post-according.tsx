@@ -9,7 +9,7 @@ import { AvatarFrame } from '@/components/custom/AvatarFrame/AvatarFrame'
 import { EllipsisVertical, PencilLine, ThumbsDown, ThumbsUp, TrashIcon } from 'lucide-react'
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { authStatusRequest, deletpost, GetComents, getMyreaction, makeReaction, PostUpdate } from '../axios/axiosClient'
+import { authStatusRequest, deletpost,makeReaction, PostUpdate } from '../axios/axiosClient'
 import { CommentsAccord } from './comment-according'
 import { Button } from '../ui/button'
 import { toast } from 'sonner'
@@ -51,8 +51,8 @@ import { IMAGE_ACCEPT_STRING, IMAGE_FORMAT_ERROR, isAllowedImage } from "@/lib/i
 
 
 export type Post = {
-    ID: bigint,
-    USER_ID: bigint,
+    ID: number,
+    USER_ID: number,
     like: number,
     dislike: number,
     content: string,
@@ -64,9 +64,9 @@ export type Post = {
 
 }
 export type comment = {
-    ID: bigint,
-    USER_ID: bigint,
-    POST_ID: bigint,
+    ID: number,
+    USER_ID: number,
+    POST_ID: number,
     comment: string,
 }
 
@@ -76,7 +76,7 @@ export function PostAccord({ post, className, ProfilID }: { post: any, className
     const [openModify, setOpenModify] = useState(false);
     const queryclient = useQueryClient();
     const { mutate: doReaction } = useMutation({
-        mutationFn: async (data: { POST_ID: bigint; reaction: 'like' | 'dislike' }) => makeReaction(data),
+        mutationFn: async (data: { POST_ID: number; reaction: 'like' | 'dislike' }) => makeReaction(data),
         onSuccess() {
             queryclient.refetchQueries({ queryKey: ["Posts"] })
             if (ProfilID) queryclient.refetchQueries({ queryKey: ["profil", ProfilID] })

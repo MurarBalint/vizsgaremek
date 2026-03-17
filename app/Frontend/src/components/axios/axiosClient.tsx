@@ -1,5 +1,27 @@
 import axios from "axios"
-import type { AuthStatus, ProfileData } from "./Types";
+import type {
+  Advertisement,
+  AuthStatus,
+  ConnectionRecord,
+  DeleteResponse,
+  FriendWithConnectionStatus,
+  Kick,
+  KickUpsertResult,
+  LoginRequest,
+  MessageResponse,
+  PasswordChangeData,
+  PasswordResetVerifyResponse,
+  PostsCursorResponse,
+  ProfileData,
+  RegisterRequest,
+  TokenResponse,
+  UpdateSettingsRequest,
+  UserPostComment,
+  UserPostReaction,
+  UserSearchResponse,
+  UserSettings,
+} from "./Types";
+import type { PostFormSchema } from "../PostComponents/comment-according";
 
 const baseURL = import.meta.env.VITE_API_URL;
 
@@ -36,7 +58,7 @@ export async function GetProfil(id: string) {
     return response;
 }
 export async function getPosts({ page, perPage }: { page: number, perPage: number }) {
-    const response = await JsonClient.get(`/api/posts`, {
+    const response = await JsonClient.get<PostsCursorResponse>(`/api/posts`, {
         params: {
             page,
             perPage,
@@ -45,43 +67,43 @@ export async function getPosts({ page, perPage }: { page: number, perPage: numbe
 
     return response.data
 }
-export async function getMyreaction(POST_ID: bigint) {
-    const response = await JsonClient.get(`/api/reactions/${POST_ID}`)
+export async function getMyreaction(POST_ID: number) {
+    const response = await JsonClient.get<UserPostReaction | null>(`/api/reactions/${POST_ID}`)
 
     return response.data
 }
 export async function TokenStatusRequest(Token: string) {
-    const response = await JsonClient.get(`/api/auth/token/${Token}`);
+    const response = await JsonClient.get<boolean>(`/api/auth/token/${Token}`);
 
     return response;
 }
 export async function GetMyconnections(Who: string) {
-    const response = await JsonClient.get(`/api/connections/me/${Who}`);
+    const response = await JsonClient.get<FriendWithConnectionStatus[]>(`/api/connections/me/${Who}`);
 
     return response;
 }
 export async function GetSettings() {
-    const response = await JsonClient.get(`/api/settings`);
+    const response = await JsonClient.get<UserSettings>(`/api/settings`);
 
     return response;
 }
 export async function GetAds() {
-    const response = await JsonClient.get("/api/advertisement/random")
+    const response = await JsonClient.get<Advertisement>("/api/advertisement/random")
 
     return response;
 }
 export async function GetusersByname(params: { q: string; page: number; pageSize: number }) {
-    const response = await JsonClient.get("/api/users/search", { params })
+    const response = await JsonClient.get<UserSearchResponse>("/api/users/search", { params })
 
     return response;
 }
 export async function GetComents(postid: string) {
-    const response = await JsonClient.get(`/api/comments/postComments/${postid}`);
+    const response = await JsonClient.get<UserPostComment[]>(`/api/comments/postComments/${postid}`);
 
     return response;
 }
 export async function GetKick() {
-    const response = await JsonClient.get("/api/kicks/me")
+    const response = await JsonClient.get<Kick[]>("/api/kicks/me")
 
     return response
 }
@@ -89,13 +111,13 @@ export async function GetKick() {
 
 //-------------------------------------------------------------------------------------
 // #region POST
-export async function loginRequest(data: any) {
-    const response = await JsonClient.post("/api/auth/login", data);
+export async function loginRequest(data: LoginRequest) {
+    const response = await JsonClient.post<TokenResponse>("/api/auth/login", data);
 
     return response;
 }
-export async function RegisterRequest(data: any) {
-    const response = await JsonClient.post("/api/auth/register", data);
+export async function RegisterRequest(data: RegisterRequest) {
+    const response = await JsonClient.post<MessageResponse>("/api/auth/register", data);
 
     return response;
 }
@@ -109,42 +131,42 @@ export async function createPost(data: FormData) {
 
     return response;
 }
-export async function makeReaction(data: { POST_ID: bigint; reaction: 'like' | 'dislike' }) {
+export async function makeReaction(data: { POST_ID: number; reaction: 'like' | 'dislike' }) {
     const response = await JsonClient.post(`/api/reactions`, data);
     return response;
 }
-export async function MakeCommentForPost(comment: any) {
-    const response = await JsonClient.post(`/api/comments`, comment)
+export async function MakeCommentForPost(comment: PostFormSchema) {
+    const response = await JsonClient.post<UserPostComment>(`/api/comments`, comment)
 
     return response.data
 }
 export async function SendOTPToPasswordReset(email: string) {
-    const response = await JsonClient.post(`/api/auth/reset/send-code`, { email });
+    const response = await JsonClient.post<MessageResponse>(`/api/auth/reset/send-code`, { email });
 
     return response;
 }
 export async function SendVTCR({ email, verify_code }: { verify_code: string, email: string }) {
-    const response = await JsonClient.post(`/api/auth/reset/verify-code`, { verify_code, email });
+    const response = await JsonClient.post<PasswordResetVerifyResponse>(`/api/auth/reset/verify-code`, { verify_code, email });
     return response;
 }
 export async function ChangePassword({ userId, password }: { userId: number, password: string }) {
-    const response = await JsonClient.post(`/api/auth/reset/new_password`, { userId, password });
+    const response = await JsonClient.post<MessageResponse>(`/api/auth/reset/new_password`, { userId, password });
     return response;
 }
-export async function PostManager({ ConType, id }: { ConType?: string, id: bigint }) {
-    const response = await JsonClient.post(`/api/connections/${id}${ConType ? `/${ConType}` : ""}`);
+export async function PostManager({ ConType, id }: { ConType?: string, id: number }) {
+    const response = await JsonClient.post<{ user: ConnectionRecord }>(`/api/connections/${id}${ConType ? `/${ConType}` : ""}`);
     return response;
 }
-export async function BlockUserID({ id }: { id: bigint }) {
+export async function BlockUserID({ id }: { id: number }) {
     const response = await PostManager({ id, ConType: "blocked" })
     return response;
 }
-export async function AddFriend({ id }: { id: bigint }) {
+export async function AddFriend({ id }: { id: number }) {
     const response = await PostManager({ id });
     return response;
 }
-export async function postKick(userId: bigint) {
-    const response = await JsonClient.post(`/api/kicks/${userId}`);
+export async function postKick(userId: number) {
+    const response = await JsonClient.post<KickUpsertResult>(`/api/kicks/${userId}`);
     return response;
 }
 // #endregion
@@ -168,22 +190,22 @@ export async function UpdateProfile(data: FormData, id: number) {
 
     return response;
 }
-export async function connectionMangager({ ConType, id }: { ConType?: string, id: bigint }) {
-    const response = await JsonClient.patch(`/api/connections/${id}${ConType ? `/${ConType}` : ""}`);
+export async function connectionMangager({ ConType, id }: { ConType?: string, id: number }) {
+    const response = await JsonClient.patch<{ user: ConnectionRecord }>(`/api/connections/${id}${ConType ? `/${ConType}` : ""}`);
 
     return response;
 }
-export async function SaveSettings(Settings: any) {
-    const response = await JsonClient.patch(`/api/settings`, { ...Settings });
+export async function SaveSettings(Settings: UpdateSettingsRequest) {
+    const response = await JsonClient.patch<UserSettings>(`/api/settings`, { ...Settings });
 
     return response;
 }
-export async function PasswordChange(data: any) {
-    const response = await JsonClient.patch(`/api/users/password/change`, { data });
+export async function PasswordChange(data: PasswordChangeData) {
+    const response = await JsonClient.patch<MessageResponse>(`/api/users/password/change`, { data });
 
     return response;
 }
-export async function PostUpdate(id: number, data: any) {
+export async function PostUpdate(id: number, data: FormData) {
     const response = await FormDataClient.patch(`/api/posts/${id}`, data);
 
     return response;
@@ -197,22 +219,22 @@ export async function PostUpdate(id: number, data: any) {
 //-------------------------------------------------------------------------------------
 // #region DELETE
 export async function logoutRequest() {
-    const response = await JsonClient.delete("/api/auth/logout");
+    const response = await JsonClient.delete<MessageResponse>("/api/auth/logout");
 
     return response;
 }
-export async function deletConnectionReqest({ id }: { id: bigint }) {
-    const response = await JsonClient.delete(`/api/connections/${id}`);
+export async function deletConnectionReqest({ id }: { id: number }) {
+    const response = await JsonClient.delete<DeleteResponse>(`/api/connections/${id}`);
 
     return response;
 }
-export async function deletpost({ id }: { id: bigint }) {
-    const response = await JsonClient.delete(`/api/posts/${id}`);
+export async function deletpost({ id }: { id: number }) {
+    const response = await JsonClient.delete<DeleteResponse>(`/api/posts/${id}`);
 
     return response;
 }
 export async function deletcomment({ id }: { id: string }) {
-    const response = await JsonClient.delete(`/api/comments/${id}`);
+    const response = await JsonClient.delete<DeleteResponse>(`/api/comments/${id}`);
 
     return response;
 }
