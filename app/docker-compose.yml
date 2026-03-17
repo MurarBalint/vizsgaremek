@@ -66,8 +66,10 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"   # IDE jön minden külső kérés
+      - "443:443"
     volumes:
       - ./nginx-proxy/nginx-proxy.conf:/etc/nginx/conf.d/default.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - frontend
       - backend
