@@ -1,4 +1,4 @@
-const { BadRequestError, ValidationError } = require("../errors");
+const { BadRequestError, ValidationError, NotFoundError } = require("../errors");
 const authUtils = require("../utilities/authUtils");
 
 class User_ProfileService {
@@ -18,11 +18,17 @@ class User_ProfileService {
         return await this.user_profileRepository.getUser_Profile(userId, options);
     }
 
-    async getUser_ProfileWithLastPosts(userId, encodedToken, options = {}) {
+    async getUser_ProfileWithLastPosts(userId, encodedToken, transaction) {
         if (!userId) {
             throw new BadRequestError("hiányzó user ID");
         }
-        return await this.user_profileRepository.getUser_ProfileWithLastPosts(userId, encodedToken.userID, options);
+
+        const validUser = await this.userRepository.getUser(userId, { transaction });
+        if (!validUser) {
+            throw new NotFoundError("Nincs ilyen felhasználó");
+        }
+
+        return await this.user_profileRepository.getUser_ProfileWithLastPosts(userId, encodedToken.userID, { transaction });
     }
 
     async getUser_ProfilesByPage(page, transaction) {
