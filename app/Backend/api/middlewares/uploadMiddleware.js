@@ -11,8 +11,5 @@ exports.Req_HasFile = (err, req, res, next) => {
     });
   }
 
-  return res.status(400).json({
-    message: err.message || "Ismeretlen feltöltési hiba",
-    name: err.name || null,
-  });
+  return next(err);
 };

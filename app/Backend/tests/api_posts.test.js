@@ -337,6 +337,7 @@ describe("/api/posts", () => {
 
                 expect(res.body.message).toBe(errorMessage);
             });
+
             test.each([
                 [{ content: "Skibidi test content", title: "Skibidi test title" }],
                 [{ content: "Skibidi test content", title: undefined }],
@@ -348,8 +349,8 @@ describe("/api/posts", () => {
                 expect(res.body).toBeDefined();
                 expect(res.body.message).toBeDefined();
                 expect(res.body.message).toBe("Hiányzó vagy lejárt token.");
-
             });
+            
             test.each([
                 [{ content: "Skibidi test content", title: "Skibidi test title" }],
                 [{ content: "Skibidi test content", title: undefined }],
@@ -361,7 +362,6 @@ describe("/api/posts", () => {
                 expect(res.body).toBeDefined();
                 expect(res.body.message).toBeDefined();
                 expect(res.body.message).toBe("Hiányzó user token");
-
             });
         });
     })
