@@ -503,6 +503,7 @@ describe("/api/profiles", () => {
 
             expect(res.body.message).toBe("Nincs ilyen felhasználó");
         });
+        
         test("should throw ValidationError when token is invalid", async () => {
             const inputID = 1;
 

@@ -197,9 +197,6 @@ class ConnectionsService {
         }
 
         // valid user-e
-        console.log("asd");
-        console.log(transaction);
-        
         const validUser = await this.userRepository.getUser(To_User_ID, { transaction });
         
         if (!validUser) {

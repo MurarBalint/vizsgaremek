@@ -355,7 +355,7 @@ describe("/api/advertisement", () => {
                     .expect(403);
 
                 expect(res.body).toBeDefined();
-                expect(res.body.message).toBe("Rossz file típus");
+                expect(res.body.message).toBe("Rossz file típus. Engedett: JPG, JPEG, PNG, WEBP, BMP, SVG, TIF, TIFF, AVIF, HEIC, HEIF.");
             });
 
             test("should return 401/400 if auth cookie missing (depends on your middleware)", async () => {

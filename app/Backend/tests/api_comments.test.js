@@ -421,29 +421,22 @@ describe("/api/comments", () => {
 
                 expect(res.body.message).toBe("A cél post nem található");
             });
+
             test.each([
-                [
-                    { POST_ID: undefined, comment: "test comment (post)" },
-                    "Hiányzó post id",
-                ],
+                [{ POST_ID: undefined, comment: "test comment (post)" }, "Hiányzó post id",],
                 [{ POST_ID: 3, comment: undefined }, "A komment nem lehet üres"],
                 [{ POST_ID: 3, comment: "" }, "A komment nem lehet üres"],
                 [{ POST_ID: 3, comment: "      " }, "A komment nem lehet üres"],
-                [
-                    { POST_ID: 3, comment: invalidComment },
-                    "A komment túl hosszú (max 500 karakter)",
-                ],
-            ])(
-                "should throw error on invalid attributes",
-                async (payload, expectedMessage) => {
-                    const res = await request(app)
-                        .post("/api/comments")
-                        .send(payload)
-                        .set("Cookie", [cookie])
-                        .expect(400);
+                [{ POST_ID: 3, comment: invalidComment }, "A komment túl hosszú (max 500 karakter)",],
+            ])("should throw error on invalid attributes", async (payload, expectedMessage) => {
+                const res = await request(app)
+                    .post("/api/comments")
+                    .send(payload)
+                    .set("Cookie", [cookie])
+                    .expect(400);
 
-                    expect(res.body.message).toBe(expectedMessage);
-                },
+                expect(res.body.message).toBe(expectedMessage);
+            },
             );
         });
     });
@@ -505,7 +498,7 @@ describe("/api/comments", () => {
 
                 const foundComment = await db.User_Post_Comment.findOne({
                     where: {
-                        ID: itemId    
+                        ID: itemId
                     },
                 })
 
@@ -513,7 +506,7 @@ describe("/api/comments", () => {
             });
 
             test("should throw error if user try delete another person's comment", async () => {
-                
+
                 const user = {
                     ID: 2,
                     username: "user",

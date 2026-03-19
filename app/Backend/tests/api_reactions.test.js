@@ -152,12 +152,14 @@ describe("/api/reactions", () => {
                     ),
                 );
             });
+            
             test("should throw ValidationError when token is invalid", async () => {
                 const res = await request(app).get("/api/reactions").set("Cookie", [cookieinvalid]).expect(403);
                 expect(res.body).toBeDefined();
                 expect(res.body.message).toBeDefined();
                 expect(res.body.message).toBe("Hiányzó vagy lejárt token.");
             });
+
             test("should throw UnauthorizedError when missing token", async () => {
                 const res = await request(app).get("/api/reactions").expect(401);
                 expect(res.body).toBeDefined();
