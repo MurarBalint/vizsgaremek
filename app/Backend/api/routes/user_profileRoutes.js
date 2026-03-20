@@ -8,6 +8,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
 const { getStorage } = require("../utilities/cloudUtils");
 const upload = getStorage();
 const cloudMiddleware = require("../middlewares/uploadMiddleware");
+const normalizeUploadedImage = require("../middlewares/normalizeUploadedImage");
 //---------------------------------------------------------
 
 router.param("paramPage", paramHandler.paramPage);
@@ -302,7 +303,8 @@ router.patch(
   [
     authMiddleware.userIsLoggedIn, 
     upload.single("avatar"), 
-    cloudMiddleware.Req_HasFile
+    cloudMiddleware.Req_HasFile,
+    normalizeUploadedImage
   ],
   user_profileController.updateUser_Profile
 );

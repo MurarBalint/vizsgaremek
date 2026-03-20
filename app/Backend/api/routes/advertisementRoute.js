@@ -4,6 +4,8 @@ const authMiddleware = require("../middlewares/authMiddleware");
 const advertisementController = require("../controllers/advertisementController");
 const { getStorage } = require("../utilities/cloudUtils");
 const paramHandler = require("../middlewares/paramHandler");
+const cloudMiddleware = require("../middlewares/uploadMiddleware");
+const normalizeUploadedImage = require("../middlewares/normalizeUploadedImage");
 
 const upload = getStorage();
 
@@ -229,7 +231,7 @@ router.get("/:itemId", [authMiddleware.userIsLoggedIn, authMiddleware.isAdmin], 
  *       400:
  *         $ref: '#/components/responses/BadRequest'
  */
-router.post("/", [authMiddleware.userIsLoggedIn, authMiddleware.isAdmin, upload.single("image")], advertisementController.createAdvertisement);
+router.post("/", [authMiddleware.userIsLoggedIn, authMiddleware.isAdmin, upload.single("image"), cloudMiddleware.Req_HasFile, normalizeUploadedImage], advertisementController.createAdvertisement);
 
 /**
  * @swagger

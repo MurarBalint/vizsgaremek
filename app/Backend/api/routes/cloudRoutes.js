@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
+
 const controller = require("../controllers/cloudController");
 const { getStorage } = require("../utilities/cloudUtils");
 const authMiddleware = require("../middlewares/authMiddleware");
+const cloudMiddleware = require("../middlewares/uploadMiddleware");
+const normalizeUploadedImage = require("../middlewares/normalizeUploadedImage");
 
 const upload = getStorage();
 
@@ -109,7 +112,9 @@ router.post(
   [
     authMiddleware.userIsLoggedIn, 
     authMiddleware.isAdmin,
-    upload.single("avatar")
+    upload.single("avatar"),
+    cloudMiddleware.Req_HasFile,
+    normalizeUploadedImage,
   ],
   controller.UploadPicture
 );
