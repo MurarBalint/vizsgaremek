@@ -6,6 +6,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
 const { getStorage } = require("../utilities/cloudUtils");
 const upload = getStorage();
 const cloudMiddleware = require("../middlewares/uploadMiddleware");
+const normalizeUploadedImage = require("../middlewares/normalizeUploadedImage");
 
 module.exports = function authRoute(authLimiter) {
   const router = express.Router();
@@ -357,7 +358,7 @@ module.exports = function authRoute(authLimiter) {
    *       400:
    *         $ref: '#/components/responses/BadRequest'
    */
-  router.post("/register/confirm/:token", authLimiter, upload.single("avatar"), cloudMiddleware.Req_HasFile, authController.confirmRegistration);
+  router.post("/register/confirm/:token", [authLimiter, upload.single("avatar"), cloudMiddleware.Req_HasFile, normalizeUploadedImage], authController.confirmRegistration);
 
   /**
    * @swagger
