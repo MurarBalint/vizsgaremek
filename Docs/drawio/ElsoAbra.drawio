@@ -1,0 +1,58 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 OPR/128.0.0.0" version="29.6.4">
+  <diagram name="Oldal-1" id="elvRxNZXxCTsSmrbQTDf">
+    <mxGraphModel dx="1384" dy="773" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VQ_8KsB53WLyWallmL66-4" edge="1" parent="1" source="VQ_8KsB53WLyWallmL66-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VQ_8KsB53WLyWallmL66-3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;strokeColor=#b85450;fillColor=#f8cecc;strokeWidth=2;" value="&lt;span style=&quot;white-space-collapse: break-spaces;&quot;&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;font style=&quot;color: rgb(153, 0, 0); font-size: 15px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Frontend&lt;/b&gt;&lt;/font&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;React 19+ TypeScript + Vite A felhasználó itt jelentkezik be, posztol, kommentel és kezeli a profilját, kapcsolatait.&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="40" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-7" edge="1" parent="1" source="VQ_8KsB53WLyWallmL66-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VQ_8KsB53WLyWallmL66-6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-9" edge="1" parent="1" source="VQ_8KsB53WLyWallmL66-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VQ_8KsB53WLyWallmL66-8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;strokeColor=#6c8ebf;fillColor=#dae8fc;strokeWidth=2;" value="&lt;span style=&quot;text-align: left; white-space-collapse: break-spaces; background-color: oklab(0.678888 0.00325716 -0.011175 / 0.0784314);&quot;&gt;&lt;font style=&quot;&quot; face=&quot;Times New Roman&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font style=&quot;color: rgb(0, 8, 255); font-size: 15px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Backend API&lt;/b&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;text-align: left; white-space-collapse: break-spaces; background-color: oklab(0.678888 0.00325716 -0.011175 / 0.0784314);&quot;&gt;&lt;font style=&quot;font-size: 13px;&quot; face=&quot;Times New Roman&quot;&gt;&lt;font&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Node.js + Express + Sequelize Itt fut az üzleti logika, jogosultságellenőrzés, e-mail küldés és a Swagger docs. e-mail küldés&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="201" x="319" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;font-family: &amp;quot;gg sans&amp;quot;, &amp;quot;Noto Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif; font-size: 16px; text-align: left; white-space-collapse: break-spaces; background-color: oklab(0.678888 0.00325716 -0.011175 / 0.0784314);&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;API kérések&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="240" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;strokeColor=#82B366;fillColor=#d5e8d4;strokeWidth=2;" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; font-size: 13px; white-space-collapse: break-spaces;&quot;&gt;&lt;font face=&quot;Times New Roman&quot; style=&quot;color: rgb(130, 179, 102);&quot;&gt;&lt;b style=&quot;&quot;&gt;MYSQL adatbázis&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;span style=&quot;font-size: 13px; white-space-collapse: break-spaces;&quot;&gt;adatlekérés és mentes&lt;br&gt;mihirunk_db Felhasználók, profilok, posztok, kommentek reakciók, kapcsolatok.&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="160" x="600" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;strokeColor=#BFBB49;fillColor=#fff2cc;strokeWidth=2;" value="&lt;span style=&quot;text-align: left; white-space-collapse: break-spaces; background-color: oklab(0.678888 0.00325716 -0.011175 / 0.0784314);&quot;&gt;&lt;font style=&quot;font-size: 13px;&quot; face=&quot;Times New Roman&quot;&gt;&lt;font style=&quot;color: rgb(144, 119, 18);&quot;&gt;&lt;b style=&quot;&quot;&gt;SMTP / e-mail&lt;/b&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;text-align: left; white-space-collapse: break-spaces;&quot;&gt;&lt;font style=&quot;font-size: 13px;&quot; face=&quot;Times New Roman&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Regisztráció és jelszó&lt;br&gt;visszaállítás közben&lt;br&gt;innen megy ki az üzenet.&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="201" x="319" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-13" edge="1" parent="1" source="VQ_8KsB53WLyWallmL66-11" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" target="VQ_8KsB53WLyWallmL66-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;strokeColor=#9673a6;fillColor=#e1d5e7;strokeWidth=2;" value="&lt;span style=&quot;text-align: left; white-space-collapse: break-spaces;&quot;&gt;&lt;font style=&quot;color: rgb(124, 111, 143); font-size: 15px;&quot; face=&quot;Times New Roman&quot;&gt;&lt;b style=&quot;&quot;&gt;Asztali adminpanel&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;text-align: left; white-space-collapse: break-spaces;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0); font-size: 13px;&quot; face=&quot;Times New Roman&quot;&gt;WPF + MVVM Admin oldali kezelés: felhasználók, posztok, hirdetések, adminok.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="560" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-22" edge="1" parent="1" source="VQ_8KsB53WLyWallmL66-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" target="VQ_8KsB53WLyWallmL66-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;strokeColor=#6c8ebf;fillColor=#dae8fc;strokeWidth=2;" value="&lt;span style=&quot;text-align: left; white-space-collapse: break-spaces;&quot;&gt;&lt;font style=&quot;color: rgb(19, 151, 184); font-size: 15px;&quot; face=&quot;Times New Roman&quot;&gt;Publikus oldal&lt;/font&gt;&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;span style=&quot;font-family: &amp;quot;gg sans&amp;quot;, &amp;quot;Noto Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif; text-align: left; white-space-collapse: break-spaces;&quot;&gt;&lt;font style=&quot;font-size: 13px; color: rgb(0, 0, 0);&quot;&gt;https://mihirunk.hu A kész rendszer ezen a címen érhető el.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="40" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=45;" value="&lt;span style=&quot;font-family: &amp;quot;gg sans&amp;quot;, &amp;quot;Noto Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif; text-align: left; white-space-collapse: break-spaces; background-color: oklab(0.678888 0.00325716 -0.011175 / 0.0784314);&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;admin műveletek&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="530" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-17" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;font-family: &amp;quot;gg sans&amp;quot;, &amp;quot;Noto Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif; font-size: 16px; text-align: left; white-space-collapse: break-spaces; background-color: oklab(0.678888 0.00325716 -0.011175 / 0.0784314);&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Email Küldés&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="420" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-18" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;text-align: left; white-space-collapse: break-spaces;&quot;&gt;&lt;font style=&quot;font-size: 13px; color: rgb(0, 0, 0);&quot; face=&quot;Times New Roman&quot;&gt;adatlekérés és mentés&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="530" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="VQ_8KsB53WLyWallmL66-24" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;font-family: &amp;quot;gg sans&amp;quot;, &amp;quot;Noto Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif; font-size: 16px; text-align: left; white-space-collapse: break-spaces; background-color: oklab(0.678888 0.00325716 -0.011175 / 0.0784314);&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Docker Futtatja&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="160" x="130" y="410" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
