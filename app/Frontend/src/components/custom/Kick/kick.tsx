@@ -87,7 +87,7 @@ export function KickButton({ id, myid, className }: { id: number; myid: string, 
             }
         >
             <img src="/kicking.png" alt="Kick" className="size-6 bg-slate-200 rounded-full" />
-            Rugás
+            Rúgás
             {isOld && <Check className="ml-2 size-4" />}
         </Button>
     )
