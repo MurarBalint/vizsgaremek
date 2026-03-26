@@ -122,7 +122,7 @@ function RouteComponent() {
         <div className="flex items-center gap-2 bg-red-50 px-3 py-2 rounded-md shrink-0">
           <Input
             type="text"
-            placeholder="Felhasználó név"
+            placeholder="Felhasználónév"
             className="h-8 bg-rose-200"
             value={search}
             onInput={(e) => setSearch((e.target as HTMLInputElement).value)}

@@ -22,7 +22,7 @@ import { MakeCommentForPost } from '../axios/axiosClient'
 
 
 const formSchema = z.object({
-    comment: z.string().min(3, { message: "Túl rövid" }).max(500, { message: "Túl Hosszú" }),
+    comment: z.string().min(3, { message: "Túl rövid" }).max(500, { message: "Túl hosszú" }),
     POST_ID: z.number().optional(),
 })
 
@@ -86,7 +86,7 @@ export function CommentsAccord({ postID, commentsList, ProfilID }: { postID: num
                         </div>
                     </ScrollArea>
                 ) : (
-                    <p className="text-sm text-gray-500 px-3">Nincsenek még kommentek. Kommentelj TE!!</p>
+                    <p className="text-sm text-gray-500 px-3">Nincsenek még kommentek. Írj te elsőként!</p>
                 )}
             </AccordionContent>
         </AccordionItem>

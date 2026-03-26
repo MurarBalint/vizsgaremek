@@ -52,12 +52,12 @@ export function PostCreate() {
             form.resetField("media");
             form.resetField("title");
             setOpen(false);
-            toast.success("Poszt sikeresen létrehozzva 🎉", {
+            toast.success("Poszt sikeresen létrehozva 🎉", {
                 duration: 3000,
             })
         },
         onError(error: any){
-            toast.error(error.response.data.message || "Sikertelen poszt létrehozzása")
+            toast.error(error.response.data.message || "Sikertelen poszt létrehozása")
         },
         retry: 0
     })

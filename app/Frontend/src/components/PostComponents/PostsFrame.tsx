@@ -55,7 +55,7 @@ export function PostsFrame() {
                         </CardHeader>
                         <CardContent className='flex gap-4 flex-wrap'>
                             <p className="flex justify-center">Hiba történt! Töltsd újra az oldalt, vagy próbáld később.</p>
-                            <Button onClick={() => Ujra()}>Oldal újra Töltése</Button>
+                            <Button onClick={() => Ujra()}>Oldal újratöltése</Button>
                         </CardContent>
                     </Card>
                 </>

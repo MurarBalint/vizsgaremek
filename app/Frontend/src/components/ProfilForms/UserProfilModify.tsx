@@ -58,7 +58,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
             toast.error(error.response.data.message)
         },
         onSuccess: () => {
-            toast.success("Fiók modositása sikeres 🎉", {
+            toast.success("Fiók modosítása sikeres 🎉", {
                 duration: 3000,
             })
             queryClient.refetchQueries({ queryKey: ["profil"] });
@@ -127,7 +127,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
     return (
         <Dialog onOpenChange={SETDEFAULTDATA}>
             <DialogTrigger asChild >
-                <Button className='bg-red-400 hover:bg-red-100 hover:text-red-800' ><PenLine className='text-black' />Profil Módositása</Button>
+                <Button className='bg-red-400 hover:bg-red-100 hover:text-red-800' ><PenLine className='text-black' />Profil módosítása</Button>
             </DialogTrigger>
             <DialogContent className="bg-red-100 z-999 max-h-[90vh] overflow-y-auto">
                 <DialogTitle className="display-none" />
@@ -135,7 +135,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className={"flex flex-col gap-6"}>
                             <div className="flex flex-col items-center gap-1 text-center">
-                                <h1 className="text-2xl font-bold">Profil módositása</h1>
+                                <h1 className="text-2xl font-bold">Profil módosítása</h1>
                             </div>
                             {/* First Name */}
                             <FormField
@@ -291,7 +291,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
                             {isPending ? <Loader /> : ""}
                             <Field>
                                 <FieldDescription className="px-6 text-center">
-                                    <Button type="submit" className="bg-red-400 text-black hover:bg-red-50">Profil modositása</Button>
+                                    <Button type="submit" className="bg-red-400 text-black hover:bg-red-50">Profil módosítása</Button>
                                 </FieldDescription>
                             </Field>
                         </form>

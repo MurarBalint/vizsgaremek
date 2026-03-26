@@ -238,7 +238,7 @@ export function PostDeletion({ mypost, ID, className, open, onOpenChange, isTrig
             toast.error(error.response.data.message)
         },
         onSuccess: () => {
-            toast.success("Sikeresen tőrőlted a posztod", {
+            toast.success("Sikeresen tőrőlted a posztodat", {
                 duration: 3000,
             })
             queryclient.refetchQueries({ queryKey: ["Posts"] })
@@ -250,7 +250,7 @@ export function PostDeletion({ mypost, ID, className, open, onOpenChange, isTrig
             {!isTriggerd && (<DialogTrigger asChild>
                 <div className={`flex gap-1 ${className}`}>
                     <TrashIcon />
-                    <p>Tőrlés</p>
+                    <p>Törlés</p>
                 </div>
             </DialogTrigger>)}
 
@@ -299,12 +299,12 @@ export function PostModify({ mypost, post, className, open, onOpenChange, isTrig
             queryclient.refetchQueries({ queryKey: ["Posts"] })
             form.reset()
             onOpenChange?.(false)
-            toast.success("Poszt sikeresen módositva 🎉", {
+            toast.success("Poszt sikeresen módosítva 🎉", {
                 duration: 3000,
             })
         },
         onError(error: any) {
-            toast.error(error.response.data.message || "Sikertelen poszt módositás")
+            toast.error(error.response.data.message || "Sikertelen poszt módosítás")
         },
         retry: 0,
     })

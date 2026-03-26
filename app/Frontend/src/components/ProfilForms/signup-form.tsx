@@ -140,10 +140,10 @@ export function SignupForm({ className, onSwitch, ...props }: SignupFormProps) {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="username">Felhasználó név</FormLabel>
+              <FormLabel htmlFor="username">Felhasználónév</FormLabel>
               <FormControl>
                 <InputGroup>
-                  <InputGroupInput id="username" placeholder="Adj meg egy felhasználó nevet" type="text" {...field} required />
+                  <InputGroupInput id="username" placeholder="Adj meg egy felhasználónevet" type="text" {...field} required />
                   <InputGroupAddon align="inline-end">
                     <Tooltip>
                       <TooltipTrigger asChild>
@@ -156,7 +156,7 @@ export function SignupForm({ className, onSwitch, ...props }: SignupFormProps) {
                         </InputGroupButton>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>A felhasználó név egyedi</p>
+                        <p>A felhasználónév egyedi</p>
                       </TooltipContent>
                     </Tooltip>
                   </InputGroupAddon>

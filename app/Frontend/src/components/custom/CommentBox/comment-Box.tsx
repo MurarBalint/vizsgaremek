@@ -22,7 +22,7 @@ export function Commentbox({ comment, ProfilID }: { comment?: UserPostComment, P
             toast.error(error.response?.data?.message ?? "Hiba történt")
         },
         onSuccess: () => {
-            toast.success("Sikeresen tőrőlted a kommented", {
+            toast.success("Sikeresen tőrőlted a kommentedet", {
                 duration: 3000,
             })
             queryclient.refetchQueries({ queryKey: ["Posts"] })

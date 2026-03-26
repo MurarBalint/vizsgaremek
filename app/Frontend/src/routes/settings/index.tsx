@@ -150,7 +150,7 @@ type RegisterSchema = z.infer<typeof registerSchema>
 export function FiokSettings() {
     return (
         <div className="flex-1 md:ml-6 bg-red-100 shadow rounded-md p-6">
-            <h1 className="text-2xl font-bold mb-6">Fiók beállítások</h1>
+            <h1 className="text-2xl font-bold mb-6">Fiókbeállítások</h1>
             <div className="space-y-4 bg-rose-50 rounded-xl p-5">
                 <PasswordReseter></PasswordReseter>
             </div>
@@ -167,7 +167,7 @@ function PasswordReseter() {
             toast.error(error.response.data.message)
         },
         onSuccess: () => {
-            toast.success("Fiók jelszava megváltoztattva", {
+            toast.success("A fiók jelszava megváltoztatva", {
                 description: "Jelszava változott",
                 duration: 30000,
             })
@@ -205,7 +205,7 @@ function PasswordReseter() {
                             </div>
                             <FormControl>
                                 <InputGroup>
-                                    <InputGroupInput placeholder="Add meg az régi jelszavad" type={oldPasswordShown ? "text" : "password"}{...field} required id="old_password" />
+                                    <InputGroupInput placeholder="Add meg a régi jelszavad" type={oldPasswordShown ? "text" : "password"}{...field} required id="old_password" />
                                     <InputGroupAddon align="inline-end">
                                         <InputGroupButton
                                             variant="ghost"
@@ -372,7 +372,7 @@ useEffect(() => {
 
     return (
         <div className="flex-1 md:ml-6 bg-red-100 shadow rounded-md p-6">
-            <h1 className="text-2xl font-bold mb-6">Értesítések beállítások</h1>
+            <h1 className="text-2xl font-bold mb-6">Értesítési beállítások</h1>
             <div className="space-y-4 bg-rose-50 p-6 py-10 rounded-lg">
                 <div className="flex flex-col gap-6">
 

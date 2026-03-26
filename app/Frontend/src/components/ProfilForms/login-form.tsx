@@ -124,7 +124,7 @@ export function LoginForm({ className, onSwitch, ...props }: LoginFormProps) {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="username">Felhasználó név</FormLabel>
+              <FormLabel htmlFor="username">Felhasználónév</FormLabel>
               <FormControl>
                 <Input id="username" placeholder="Petike123" {...field} required />
               </FormControl>
