@@ -35,6 +35,16 @@ declare module '@tanstack/react-router' {
   }
 }
 
+// Secret console function – type SecretStyle() in DevTools to toggle the hidden dark theme
+declare global {
+  interface Window {
+    SecretStyle: () => void
+  }
+}
+window.SecretStyle = () => {
+  document.documentElement.classList.toggle('secret-dark')
+}
+
 // Render the app
 const rootElement = document.getElementById('app')
 if (rootElement && !rootElement.innerHTML) {
