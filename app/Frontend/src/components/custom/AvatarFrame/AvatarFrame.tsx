@@ -32,9 +32,9 @@ export function AvatarFrame({ userid, className, userData }: { userid?: number, 
         return (
             <HoverCard>
                 <HoverCardTrigger onClick={() => nav({ to: "/profil/$profilId", params: { profilId: `${userid}` } })} className="cursor-pointer">
-                    <Card key={userid} className={`bg-red-200 rounded-none rounded-l-3xl hover:bg-red-600 hover:text-white ${className}`}>
+                    <Card key={userid} className={`bg-primary-200 rounded-none rounded-l-3xl hover:bg-primary-600 hover:text-white ${className}`}>
                         <CardContent className="p-0 flex">
-                            <Avatar className="p-0 border-2 border-red-500 ">
+                            <Avatar className="p-0 border-2 border-primary-500 ">
                                 <AvatarImage src={`${User?.profil.avatar_url}`} />
                                 <AvatarFallback>{User?.profil.first_name} {User?.profil.last_name}</AvatarFallback>
                             </Avatar>
@@ -44,14 +44,14 @@ export function AvatarFrame({ userid, className, userData }: { userid?: number, 
                         </CardContent>
                     </Card>
                 </HoverCardTrigger>
-                <HoverCardContent className="w-72 bg-[#1a0f10] text-white border border-[#3a1b1d] shadow-xl">
+                <HoverCardContent className="w-72 bg-brand-bg text-white border border-brand-border shadow-xl">
                     <button
-                        className="absolute top-[6px] right-[6px] h-7 w-7 rounded-full bg-[#ff3b3b] hover:bg-[#cc2f2f] flex items-center justify-center text-white text-sm cursor-pointer z-70"
+                        className="absolute top-[6px] right-[6px] h-7 w-7 rounded-full bg-brand hover:bg-brand-hover flex items-center justify-center text-white text-sm cursor-pointer z-70"
                         onClick={() => nav({ to: "/profil/$profilId", params: { profilId: `${userid}` } })}>
                         ›
                     </button>
                     <div className="flex items-center gap-4">
-                        <Avatar className="h-16 w-16 border-2 border-[#ff3b3b]">
+                        <Avatar className="h-16 w-16 border-2 border-brand">
                             <AvatarImage src={`${User?.profil.avatar_url}`} />
                             <AvatarFallback>
                                 {User?.profil.first_name?.[0]}
@@ -60,7 +60,7 @@ export function AvatarFrame({ userid, className, userData }: { userid?: number, 
                         </Avatar>
 
                         <div>
-                            <p className="text-lg font-bold text-[#ff3b3b]">
+                            <p className="text-lg font-bold text-brand">
                                 {User?.profil.first_name} {User?.profil.last_name}
                             </p>
 
@@ -75,8 +75,8 @@ export function AvatarFrame({ userid, className, userData }: { userid?: number, 
                         <p>Csatlakozott: {User?.user.created_at?.slice(0, 10)}</p>
                     </div>
 
-                    <div className="mt-4 p-2 rounded bg-[#150a0c] border border-[#3a1b1d]">
-                        <p className="text-xs text-[#ff3b3b] font-semibold mb-1">
+                    <div className="mt-4 p-2 rounded bg-brand-inset border border-brand-border">
+                        <p className="text-xs text-brand font-semibold mb-1">
                             Rövid bemutatkozás
                         </p>
                         <p className="text-xs text-gray-300">
@@ -92,9 +92,9 @@ export function AvatarFrame({ userid, className, userData }: { userid?: number, 
         return (
             <HoverCard>
                 <HoverCardTrigger onClick={() => nav({ to: "/profil/$profilId", params: { profilId: `${userData.ID}` } })} className="cursor-pointer">
-                    <Card key={userid} className={`bg-red-200 rounded-none rounded-l-3xl hover:bg-red-600 hover:text-white ${className}`}>
+                    <Card key={userid} className={`bg-primary-200 rounded-none rounded-l-3xl hover:bg-primary-600 hover:text-white ${className}`}>
                         <CardContent className="p-0 flex">
-                            <Avatar className="p-0 border-2 border-red-500 ">
+                            <Avatar className="p-0 border-2 border-primary-500 ">
                                 <AvatarImage src={`${userData.profile?.avatar_url}`} />
                                 <AvatarFallback>{userData?.profile?.first_name} {userData?.profile?.last_name}</AvatarFallback>
                             </Avatar>
@@ -104,14 +104,14 @@ export function AvatarFrame({ userid, className, userData }: { userid?: number, 
                         </CardContent>
                     </Card>
                 </HoverCardTrigger>
-                <HoverCardContent className="w-72 bg-[#1a0f10] text-white border border-[#3a1b1d] shadow-xl">
+                <HoverCardContent className="w-72 bg-brand-bg text-white border border-brand-border shadow-xl">
                     <button
-                        className="absolute top-[6px] right-[6px] h-7 w-7 rounded-full bg-[#ff3b3b] hover:bg-[#cc2f2f] flex items-center justify-center text-white text-sm cursor-pointer z-70"
+                        className="absolute top-[6px] right-[6px] h-7 w-7 rounded-full bg-brand hover:bg-brand-hover flex items-center justify-center text-white text-sm cursor-pointer z-70"
                         onClick={() => nav({ to: "/profil/$profilId", params: { profilId: `${userData.ID}` } })}>
                         ›
                     </button>
                     <div className="flex items-center gap-4">
-                        <Avatar className="h-16 w-16 border-2 border-[#ff3b3b]">
+                        <Avatar className="h-16 w-16 border-2 border-brand">
                             <AvatarImage src={`${userData?.profile?.avatar_url}`} />
                             <AvatarFallback>
                                 {userData?.profile?.first_name?.[0]}
@@ -120,7 +120,7 @@ export function AvatarFrame({ userid, className, userData }: { userid?: number, 
                         </Avatar>
 
                         <div>
-                            <p className="text-lg font-bold text-[#ff3b3b]">
+                            <p className="text-lg font-bold text-brand">
                                 {userData?.profile?.first_name} {userData?.profile?.last_name}
                             </p>
 
@@ -135,8 +135,8 @@ export function AvatarFrame({ userid, className, userData }: { userid?: number, 
                         <p>Csatlakozott: {userData?.created_at?.slice(0, 10)}</p>
                     </div>
 
-                    <div className="mt-4 p-2 rounded bg-[#150a0c] border border-[#3a1b1d]">
-                        <p className="text-xs text-[#ff3b3b] font-semibold mb-1">
+                    <div className="mt-4 p-2 rounded bg-brand-inset border border-brand-border">
+                        <p className="text-xs text-brand font-semibold mb-1">
                             Rövid bemutatkozás
                         </p>
                         <p className="text-xs text-gray-300">

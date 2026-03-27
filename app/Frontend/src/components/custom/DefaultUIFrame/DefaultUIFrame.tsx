@@ -49,13 +49,13 @@ export function DefaultUIFrame({
                 <Header className="shrink-0" />
                 <div className="flex-1 min-h-0 flex bg-white text-black">
                     {showAds && !isBottom && (
-                        <div className="w-[300px] shrink-0 bg-red-950">
+                        <div className="w-[300px] shrink-0 bg-primary-950">
                             <AdsFrame id={1} variant="side" />
                         </div>
                     )}
                     <div
                         className={[
-                            "flex-1 min-h-0 bg-red-950",
+                            "flex-1 min-h-0 bg-primary-950",
                             bottomPad,
                             className ?? "",
                         ].join(" ")}
@@ -63,7 +63,7 @@ export function DefaultUIFrame({
                         {children}
                     </div>
                     {showAds && !isBottom && (
-                        <div className="w-[300px] shrink-0 bg-red-950">
+                        <div className="w-[300px] shrink-0 bg-primary-950">
                             <AdsFrame id={2} variant="side" />
                         </div>
                     )}
@@ -86,7 +86,7 @@ export function DefaultUIFrame({
                     <div className="flex flex-1 bg-white text-black">
                         <div className="flex flex-1 h-full">
                             {showAds && !isBottom ? <AdsFrame id={1} variant="side" /> : null}
-                            <div className={`w-full z-1 h-[calc(100vh-84px)] flex flex-col min-h-0 bg-red-950 ${className ?? ""}`}>
+                            <div className={`w-full z-1 h-[calc(100vh-84px)] flex flex-col min-h-0 bg-primary-950 ${className ?? ""}`}>
                                 {children}
                             </div>
                             {showAds && !isBottom ? <AdsFrame id={2} variant="side" /> : null}

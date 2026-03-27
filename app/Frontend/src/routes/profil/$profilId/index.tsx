@@ -65,7 +65,7 @@ function RouteComponent() {
   
   if (profil?.data == null) {
     return (
-      <DefaultUIFrame className="bg-red-300 min-h-0 flex items-center justify-center">
+      <DefaultUIFrame className="bg-primary-300 min-h-0 flex items-center justify-center">
         <Card className="max-w-md w-full text-center shadow-xl">
           <CardHeader>
             <CardTitle>Profil nem található</CardTitle>
@@ -88,11 +88,11 @@ function RouteComponent() {
     )
   }
   return (
-    <DefaultUIFrame className='bg-red-300 text-white '>
+    <DefaultUIFrame className='bg-primary-300 text-white '>
       {/* DEFAULT (magas képernyő) */}
       <div className="sm:[@media(max-height:820px)]:hidden">
         {/* BANNER */}
-        <div className="relative w-full h-40 bg-gradient-to-b from-red-600 to-red-100">
+        <div className="relative w-full h-40 bg-gradient-to-b from-primary-600 to-primary-100">
           <div className="absolute left-1/2 -bottom-16 -translate-x-1/2">
             <img
               src={profil?.data.avatar_url}
@@ -103,11 +103,11 @@ function RouteComponent() {
         </div>
 
         {/* Név és statok (lelógós verzió) */}
-        <div className="-mt-20 flex flex-col items-center text-center px-4 pb-5 bg-red-400 pt-40">
+        <div className="-mt-20 flex flex-col items-center text-center px-4 pb-5 bg-primary-400 pt-40">
           <h1 className="text-2xl font-semibold">
             {profil?.data.first_name} {profil?.data.last_name}
             <p className='text-xs text-stone-400'>~ {profil?.data.user.username} ~</p>
-            {profil?.data.user.role != "user" && (<Badge className={profil?.data.user.role == "admin"? "bg-red-500":"bg-purple-500"}><Gavel/> {profil?.data.user.role == "admin"? "Admin":"Owner"}</Badge>)}
+            {profil?.data.user.role != "user" && (<Badge className={profil?.data.user.role == "admin"? "bg-primary-500":"bg-purple-500"}><Gavel/> {profil?.data.user.role == "admin"? "Admin":"Owner"}</Badge>)}
           </h1>
 
           <div className="ml-auto">
@@ -138,7 +138,7 @@ function RouteComponent() {
         </div>
       </div>
       {/* COMPACT (<= 820px magasság) */}
-      <div className="hidden sm:[@media(max-height:820px)]:block bg-red-400 px-4 py-4 border-b-10">
+      <div className="hidden sm:[@media(max-height:820px)]:block bg-primary-400 px-4 py-4 border-b-10">
         {/* FELSŐ SOR: bal avatar+név | jobb infók */}
         <div className="grid grid-cols-2 gap-4 items-start">
           {/* BAL: avatar + név + menü */}
@@ -199,7 +199,7 @@ function RouteComponent() {
         <AccordionItem value="activites" className='bg-transparent'>
           <AccordionTrigger className="text-xl font-semibold mb-4 p-4">Legutóbbi aktivitások</AccordionTrigger>
           <AccordionContent>
-            <LastActivity posts={profil?.data.user.posts} myid={Number(UserID)} mypost={auth?.data.userID === UserID} profilId={profilId} className="bg-rose-100! p-2 rounded-xl" />
+            <LastActivity posts={profil?.data.user.posts} myid={Number(UserID)} mypost={auth?.data.userID === UserID} profilId={profilId} className="bg-accent-100! p-2 rounded-xl" />
           </AccordionContent>
         </AccordionItem>
       </Accordion>
@@ -216,13 +216,13 @@ function LastActivity({ posts, myid, className,profilId }: { posts?: any[], myid
     )
   }
   return (
-    <div className={`bg-red-950 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ${className}`}>
+    <div className={`bg-primary-950 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ${className}`}>
       {posts.map((p) => (
         <Dialog key={p.ID}>
           <DialogTrigger>
-            <div className="max-h-48 overflow-y-auto pr-2 activity-scroll bg-red-200 rounded-xl text-black p-2 text-xl">
-              <div className="flex items-center gap-3 bg-red-50 w-full rounded-full!">
-                <AvatarFrame userid={myid} className="bg-red-100 rounded-2xl" />
+            <div className="max-h-48 overflow-y-auto pr-2 activity-scroll bg-primary-200 rounded-xl text-black p-2 text-xl">
+              <div className="flex items-center gap-3 bg-primary-50 w-full rounded-full!">
+                <AvatarFrame userid={myid} className="bg-primary-100 rounded-2xl" />
                 <h2 className="text-xl font-semibold tracking-tight">
                   {p.title}
                 </h2>
@@ -245,9 +245,9 @@ function ProfileInfo({ label, value }: { label: string; value?: string }) {
   if (!value || value === "" || value === "0000-00-00") return null
 
   return (
-    <div className="flex flex-col items-center bg-rose-200 p-2 rounded-xl">
+    <div className="flex flex-col items-center bg-accent-200 p-2 rounded-xl">
       <span className="text-black font-bold">{label}</span>
-      <span className="bg-red-400 text-black w-full rounded-xl px-2">
+      <span className="bg-primary-400 text-black w-full rounded-xl px-2">
         {value}
       </span>
     </div>
@@ -259,8 +259,8 @@ function ProfileMenu({ isMe, profilId, profil}: any) {
   return (
     <PopOver
       trigger={<EllipsisVertical className="size-7" />}
-      ButtonStyle="text-black bg-red-300 w-8 h-8 rounded-full"
-      ContentStyle="bg-red-200 border border-red-500 rounded-3xl"
+      ButtonStyle="text-black bg-primary-300 w-8 h-8 rounded-full"
+      ContentStyle="bg-primary-200 border border-primary-500 rounded-3xl"
     >
       <div className="flex flex-col gap-2">
         {isMe ? (

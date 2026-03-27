@@ -35,16 +35,16 @@ function RouteComponent() {
     })
     const [ShowMenu, setMenu] = useState("FriendsMenu");
     return (
-        <DefaultUIFrame className='bg-red-100 w-full'>
+        <DefaultUIFrame className='bg-primary-100 w-full'>
             <div className='flex flex-col h-full shrink-0'>
-                <Card className='bg-red-200 border-0 border-b-1 border-red-700 shrink-0 rounded-none'>
+                <Card className='bg-primary-200 border-0 border-b-1 border-primary-700 shrink-0 rounded-none'>
                     <CardHeader>
                         <CardTitle>Ismerősök kezelése</CardTitle>
                     </CardHeader>
                     <CardContent className='flex gap-3 flex-wrap'>
-                        <Button variant={'outline'} onClick={() => setMenu("FriendsMenu")} className={`bg-${ShowMenu === "FriendsMenu" ? "rose-300 border-black border-2" : "red-400"} hover:bg-rose-300`} ><Users /> Barátok</Button>
-                        <Button variant={'outline'} onClick={() => setMenu("FriendRequestMenu")} className={`bg-${ShowMenu === "FriendRequestMenu" ? "rose-300 border-black border-2" : "red-400"} hover:bg-rose-300`}><ShieldQuestionMark size={4} />Felkérések</Button>
-                        <Button variant={'outline'} onClick={() => setMenu("BlackListMenu")} className={`bg-${ShowMenu === "BlackListMenu" ? "rose-300 border-black border-2" : "red-400"} hover:bg-rose-300`}><ShieldBan size={4} />Tiltott Felhasználok</Button>
+                        <Button variant={'outline'} onClick={() => setMenu("FriendsMenu")} className={`${ShowMenu === "FriendsMenu" ? "bg-accent-300 border-black border-2" : "bg-primary-400"} hover:bg-accent-300`} ><Users /> Barátok</Button>
+                        <Button variant={'outline'} onClick={() => setMenu("FriendRequestMenu")} className={`${ShowMenu === "FriendRequestMenu" ? "bg-accent-300 border-black border-2" : "bg-primary-400"} hover:bg-accent-300`}><ShieldQuestionMark size={4} />Felkérések</Button>
+                        <Button variant={'outline'} onClick={() => setMenu("BlackListMenu")} className={`${ShowMenu === "BlackListMenu" ? "bg-accent-300 border-black border-2" : "bg-primary-400"} hover:bg-accent-300`}><ShieldBan size={4} />Tiltott Felhasználok</Button>
                     </CardContent>
                 </Card>
                 <div className='flex-1 overflow-auto p-3'>
@@ -62,9 +62,9 @@ function FriendsMenu({ myid }: { myid: number, }) {
         queryFn: () => GetMyconnections("accepted")
     })
     return (
-        <Card className='bg-red-300 pt-0 mt-0'>
-            <CardHeader className='p-0! m-0 bg-transparent border-red-100 border-b pl-4!'>
-                <CardTitle className='my-4 flex items-center gap-2 text-2xl bg-red-200 w-fit p-2 rounded-full border-black border-1'>
+        <Card className='bg-primary-300 pt-0 mt-0'>
+            <CardHeader className='p-0! m-0 bg-transparent border-primary-100 border-b pl-4!'>
+                <CardTitle className='my-4 flex items-center gap-2 text-2xl bg-primary-200 w-fit p-2 rounded-full border-black border-1'>
                     <Users className="w-[1em] h-[1em]" />
                     Barátok
                 </CardTitle>
@@ -81,7 +81,7 @@ function FriendsMenu({ myid }: { myid: number, }) {
 
 export function FriendsList({ id, className, myid, userData, avatarClass }: { id: number, myid: number, className?: string, userData?: UserWithProfile, avatarClass?: string }) {
     return (
-        <div className={`bg-rose-100 flex items-center rounded-xl p-2 px-4 gap-3 ${className}`}>
+        <div className={`bg-accent-100 flex items-center rounded-xl p-2 px-4 gap-3 ${className}`}>
             <AvatarFrame className={`max-w-max max-h-min p-0 bg-slate-200 m-0 ${avatarClass}`} userData={userData} />
             <KickButton id={id||userData?.profile?.ID ||0} myid={`${myid}`} className="w-min" />
         </div>
@@ -94,9 +94,9 @@ function FriendRequestMenu({ myid }: { myid: number }) {
         queryFn: () => GetMyconnections("pending")
     })
     return (
-        <Card className='bg-red-300 pt-0 mt-0'>
-            <CardHeader className='p-0! m-0 bg-transparent border-red-100 border-b pl-4!'>
-                <CardTitle className='my-4 flex items-center gap-2 text-2xl bg-red-200 w-fit p-2 rounded-full border-black border-1'>
+        <Card className='bg-primary-300 pt-0 mt-0'>
+            <CardHeader className='p-0! m-0 bg-transparent border-primary-100 border-b pl-4!'>
+                <CardTitle className='my-4 flex items-center gap-2 text-2xl bg-primary-200 w-fit p-2 rounded-full border-black border-1'>
                     <ShieldQuestionMark className="w-[1em] h-[1em]" />
                     Felkérések
                 </CardTitle>
@@ -112,7 +112,7 @@ function FriendRequestMenu({ myid }: { myid: number }) {
 }
 function FriendsreqListPerEach({ item }: { item: FriendWithConnectionStatus, myid?: number }) {
     return (
-        <div className='px-4 bg-rose-100 flex flex-col items-center rounded-xl'>
+        <div className='px-4 bg-accent-100 flex flex-col items-center rounded-xl'>
             {item.connection_status == "waiting" ?
                 <>
                     <AvatarFrame userid={item?.ID} userData={item} className='max-w-max max-h-min p-0 bg-slate-200 m-4' />
@@ -145,16 +145,16 @@ function BlackListMenu() {
         queryFn: () => GetMyconnections("blocked")
     })
     return (
-        <Card className='bg-red-300 pt-0 mt-0'>
-            <CardHeader className='p-0! m-0 bg-transparent border-red-100 border-b pl-4!'>
-                <CardTitle className='my-4 flex items-center gap-2 text-2xl bg-red-200 w-fit p-2 rounded-full border-black border-1'>
+        <Card className='bg-primary-300 pt-0 mt-0'>
+            <CardHeader className='p-0! m-0 bg-transparent border-primary-100 border-b pl-4!'>
+                <CardTitle className='my-4 flex items-center gap-2 text-2xl bg-primary-200 w-fit p-2 rounded-full border-black border-1'>
                     <ShieldBan className="w-[1em] h-[1em]" />
                     Tiltások
                 </CardTitle>
             </CardHeader>
             <CardContent className='flex gap-4 flex-wrap p-3'>
                 {blocked?.data.map((item: FriendWithConnectionStatus) => (
-                    <div className='px-4 bg-rose-100 flex flex-col items-center rounded-xl'>
+                    <div className='px-4 bg-accent-100 flex flex-col items-center rounded-xl'>
                         {item.connection_status != "blocked_me" ?
                             <>
                                 <AvatarFrame userData={item} className='max-w-max max-h-min p-0 bg-slate-200 m-4' />
@@ -170,7 +170,7 @@ function BlackListMenu() {
                             </>
                             :
                             <>
-                                <div className='px-2 py-1 bg-rose-200 rounded-xl m-2 flex'><Annoyed className='p-1' /> Lelettél tiltva </div>
+                                <div className='px-2 py-1 bg-accent-200 rounded-xl m-2 flex'><Annoyed className='p-1' /> Lelettél tiltva </div>
                             </>
                         }
                     </div>

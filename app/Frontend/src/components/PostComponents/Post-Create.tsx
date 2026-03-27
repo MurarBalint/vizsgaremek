@@ -87,13 +87,13 @@ export function PostCreate() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant="outline" className="bg-red-300 hover:bg-red-400">Mire gondolsz most?</Button>
+                <Button variant="outline" className="bg-primary-300 hover:bg-primary-400">Mire gondolsz most?</Button>
             </DialogTrigger>
 
             <DialogContent className="
                         sm:max-w-md 
                         space-y-6 
-                        bg-red-50 
+                        bg-primary-50 
                         border-black 
                         z-999 
                         p-2 
@@ -118,7 +118,7 @@ export function PostCreate() {
                                     <FormItem className="flex-1">
                                         <FormLabel>Cím</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Add meg a címet..." {...field} className="bg-red-100 focus:bg-red-300 hover:bg-red-200" />
+                                            <Input placeholder="Add meg a címet..." {...field} className="bg-primary-100 focus:bg-primary-300 hover:bg-primary-200" />
                                         </FormControl>
                                         <FormDescription>A bejegyzés címe</FormDescription>
                                         <FormMessage />
@@ -135,7 +135,7 @@ export function PostCreate() {
                                 <FormItem>
                                     <FormLabel>Tartalom</FormLabel>
                                     <FormControl>
-                                        <Textarea placeholder="Írj valamit..." {...field} className="bg-red-100 focus:bg-red-300 hover:bg-red-200" />
+                                        <Textarea placeholder="Írj valamit..." {...field} className="bg-primary-100 focus:bg-primary-300 hover:bg-primary-200" />
                                     </FormControl>
                                     <FormDescription>Legfeljebb 1000 karakter.</FormDescription>
                                     <FormMessage />
@@ -148,7 +148,7 @@ export function PostCreate() {
                             control={form.control}
                             name="media"
                             render={({ field }) => (
-                                <FormItem className="bg-red-100 focus:bg-red-300 hover:bg-red-200 p-3 rounded-lg">
+                                <FormItem className="bg-primary-100 focus:bg-primary-300 hover:bg-primary-200 p-3 rounded-lg">
                                     <FormLabel>Kép feltöltése (opcionális)</FormLabel>
                                     <FormControl>
                                         <input
@@ -206,9 +206,9 @@ export function PostCreate() {
                         {isPending ? <Loader /> : ""}
                         <DialogFooter className="sm:justify-start">
                             <DialogClose asChild>
-                                <Button type="button" className="bg-red-400">Bezárás</Button>
+                                <Button type="button" className="bg-primary-400">Bezárás</Button>
                             </DialogClose>
-                            <Button type="submit" className="bg-red-400">Küldés</Button>
+                            <Button type="submit" className="bg-primary-400">Küldés</Button>
                         </DialogFooter>
                     </form>
                 </Form>

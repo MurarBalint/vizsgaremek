@@ -52,7 +52,7 @@ export const Route = createFileRoute('/settings/')({
 function RouteComponent() {
     return (
         <SideBar>
-            <div className="p-6 bg-rose-50 w-full rounded-2xl shadow-sm">
+            <div className="p-6 bg-accent-50 w-full rounded-2xl shadow-sm">
                 <h1 className="text-2xl font-bold mb-4 text-gray-800">
                     Beállítások – Segítség
                 </h1>
@@ -96,21 +96,21 @@ export function SideBar({ children }: { children?: React.ReactNode }) {
 
     return (
         <DefaultUIFrame>
-            <div className="flex flex-col md:flex-row h-full bg-red-200">
+            <div className="flex flex-col md:flex-row h-full bg-primary-200">
                 {/* Sidebar */}
-                <div className="w-full md:w-64 shadow rounded-md p-4 mb-6 md:mb-0 bg-red-100">
+                <div className="w-full md:w-64 shadow rounded-md p-4 mb-6 md:mb-0 bg-primary-100">
                     <h2 className="text-xl font-bold mb-6">
                         <Link to='/settings'>Beállítások</Link>
                     </h2>
                     <ul className="space-y-3">
                         <Link to='/settings/account'>
-                            <li className="cursor-pointer p-2 m-4 rounded hover:bg-gray-200 hover:border-2 hover:border-black bg-red-200 underline hover:no-underline">Fiók</li>
+                            <li className="cursor-pointer p-2 m-4 rounded hover:bg-gray-200 hover:border-2 hover:border-black bg-primary-200 underline hover:no-underline">Fiók</li>
                         </Link>
                         <Link to='/settings/notification'>
-                            <li className="cursor-pointer p-2 m-4 rounded hover:bg-gray-200 hover:border-2 hover:border-black bg-red-200 underline hover:no-underline">Értesítések</li>
+                            <li className="cursor-pointer p-2 m-4 rounded hover:bg-gray-200 hover:border-2 hover:border-black bg-primary-200 underline hover:no-underline">Értesítések</li>
                         </Link>
                         <Link to='/settings/privacy'>
-                            <li className="cursor-pointer p-2 m-4 rounded hover:bg-gray-200 hover:border-2 hover:border-black bg-red-200 underline hover:no-underline">Adatvédelem</li>
+                            <li className="cursor-pointer p-2 m-4 rounded hover:bg-gray-200 hover:border-2 hover:border-black bg-primary-200 underline hover:no-underline">Adatvédelem</li>
                         </Link>
                     </ul>
                 </div>
@@ -149,9 +149,9 @@ type RegisterSchema = z.infer<typeof registerSchema>
 
 export function FiokSettings() {
     return (
-        <div className="flex-1 md:ml-6 bg-red-100 shadow rounded-md p-6">
+        <div className="flex-1 md:ml-6 bg-primary-100 shadow rounded-md p-6">
             <h1 className="text-2xl font-bold mb-6">Fiókbeállítások</h1>
-            <div className="space-y-4 bg-rose-50 rounded-xl p-5">
+            <div className="space-y-4 bg-accent-50 rounded-xl p-5">
                 <PasswordReseter></PasswordReseter>
             </div>
         </div>
@@ -371,13 +371,13 @@ useEffect(() => {
     if (isLoading) return <Loader />
 
     return (
-        <div className="flex-1 md:ml-6 bg-red-100 shadow rounded-md p-6">
+        <div className="flex-1 md:ml-6 bg-primary-100 shadow rounded-md p-6">
             <h1 className="text-2xl font-bold mb-6">Értesítési beállítások</h1>
-            <div className="space-y-4 bg-rose-50 p-6 py-10 rounded-lg">
+            <div className="space-y-4 bg-accent-50 p-6 py-10 rounded-lg">
                 <div className="flex flex-col gap-6">
 
-                    <div className="flex items-start gap-3 bg-rose-200 p-2 rounded-xl">
-                        <Checkbox id="terms-1" className="bg-red-300" checked={terms1} onCheckedChange={(checked) => setTerms1(checked === true)} />
+                    <div className="flex items-start gap-3 bg-accent-200 p-2 rounded-xl">
+                        <Checkbox id="terms-1" className="bg-primary-300" checked={terms1} onCheckedChange={(checked) => setTerms1(checked === true)} />
                         <div className="grid gap-2">
                             <Label htmlFor="terms-1">Értesítés új posztról</Label>
                             <p className="text-muted-foreground text-sm">
@@ -386,8 +386,8 @@ useEffect(() => {
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-3 bg-rose-200 p-2 rounded-xl">
-                        <Checkbox id="terms-2" className="bg-red-300" checked={terms2} onCheckedChange={(checked) => setTerms2(checked === true)} />
+                    <div className="flex items-start gap-3 bg-accent-200 p-2 rounded-xl">
+                        <Checkbox id="terms-2" className="bg-primary-300" checked={terms2} onCheckedChange={(checked) => setTerms2(checked === true)} />
                         <div className="grid gap-2">
                             <Label htmlFor="terms-2">Értesítés új kommentről a posztodon</Label>
                             <p className="text-muted-foreground text-sm">
@@ -396,8 +396,8 @@ useEffect(() => {
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-3 bg-rose-200 p-2 rounded-xl">
-                        <Checkbox id="terms-3" className="bg-red-300" checked={terms3} onCheckedChange={(checked) => setTerms3(checked === true)} />
+                    <div className="flex items-start gap-3 bg-accent-200 p-2 rounded-xl">
+                        <Checkbox id="terms-3" className="bg-primary-300" checked={terms3} onCheckedChange={(checked) => setTerms3(checked === true)} />
                         <div className="grid gap-2">
                             <Label htmlFor="terms-3">Értesítés új reakcióról a posztodon</Label>
                             <p className="text-muted-foreground text-sm">
@@ -406,8 +406,8 @@ useEffect(() => {
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-3 bg-rose-200 p-2 rounded-xl">
-                        <Checkbox id="terms-4" className="bg-red-300" checked={terms4} onCheckedChange={(checked) => setTerms4(checked === true)} />
+                    <div className="flex items-start gap-3 bg-accent-200 p-2 rounded-xl">
+                        <Checkbox id="terms-4" className="bg-primary-300" checked={terms4} onCheckedChange={(checked) => setTerms4(checked === true)} />
                         <div className="grid gap-2">
                             <Label htmlFor="terms-4">Értesítés bejelentkezésről</Label>
                             <p className="text-muted-foreground text-sm">
@@ -416,8 +416,8 @@ useEffect(() => {
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-3 bg-rose-200 p-2 rounded-xl">
-                        <Checkbox id="terms-5" className="bg-red-300" checked={terms5} onCheckedChange={(checked) => setTerms5(checked === true)} />
+                    <div className="flex items-start gap-3 bg-accent-200 p-2 rounded-xl">
+                        <Checkbox id="terms-5" className="bg-primary-300" checked={terms5} onCheckedChange={(checked) => setTerms5(checked === true)} />
                         <div className="grid gap-2">
                             <Label htmlFor="terms-5">Értesítés új barátkérésről</Label>
                             <p className="text-muted-foreground text-sm">
@@ -474,13 +474,13 @@ export function AdatvedelemSettings() {
     if (isLoading) return <Loader />
 
     return (
-        <div className="flex-1 md:ml-6 bg-red-100 shadow rounded-md p-6">
+        <div className="flex-1 md:ml-6 bg-primary-100 shadow rounded-md p-6">
             <h1 className="text-2xl font-bold mb-6">
                 Adatvédelmi beállítások
             </h1>
 
-            <div className="space-y-4 bg-rose-50 p-6 rounded-lg">
-                <div className="flex items-start gap-3 bg-rose-200 p-3 rounded-xl">
+            <div className="space-y-4 bg-accent-50 p-6 rounded-lg">
+                <div className="flex items-start gap-3 bg-accent-200 p-3 rounded-xl">
                     <Checkbox
                         checked={dataUsage}
                         onCheckedChange={(checked) =>

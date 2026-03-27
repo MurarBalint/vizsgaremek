@@ -98,14 +98,14 @@ export function PostAccord({ post, className, ProfilID }: { post: any, className
         reaction: 'dislike' as 'dislike',
     }
     return (
-        <Card className={`rounded-2xl! border shadow-md gap-0 py-0 bg-red-50 ${className ?? ""}`}>
+        <Card className={`rounded-2xl! border shadow-md gap-0 py-0 bg-primary-50 ${className ?? ""}`}>
             <CardContent className="p-0">
                 <Accordion type="single" collapsible>
                     <AccordionItem value={`itemC-${post.ID}`}>
                         <div className="relative">
-                            <AccordionTrigger className="flex items-center gap-2 p-0 rounded-full! pr-12 bg-red-50">
-                                <div className="flex items-center gap-3 bg-red-50 w-full rounded-full!">
-                                    <AvatarFrame userData={post.user} className="bg-red-100 rounded-2xl" />
+                            <AccordionTrigger className="flex items-center gap-2 p-0 rounded-full! pr-12 bg-primary-50">
+                                <div className="flex items-center gap-3 bg-primary-50 w-full rounded-full!">
+                                    <AvatarFrame userData={post.user} className="bg-primary-100 rounded-2xl" />
                                     <h2 className="text-xl font-semibold tracking-tight">{post.title}</h2>
                                 </div>
                             </AccordionTrigger>
@@ -124,7 +124,7 @@ export function PostAccord({ post, className, ProfilID }: { post: any, className
                                             </Button>
                                         </DropdownMenuTrigger>
 
-                                        <DropdownMenuContent className="bg-rose-50">
+                                        <DropdownMenuContent className="bg-accent-50">
                                             <DropdownMenuGroup>
                                                 <DropdownMenuLabel>Poszt beállítás</DropdownMenuLabel>
 
@@ -154,7 +154,7 @@ export function PostAccord({ post, className, ProfilID }: { post: any, className
                             )}
                         </div>
 
-                        <AccordionContent className="bg-red-100">
+                        <AccordionContent className="bg-primary-100">
                             <div className="flex px-4 py-3">
                                 <div className="flex-1 pr-4">
                                     <p className="text-sm text-gray-700 whitespace-pre-line text-wrap">
@@ -170,7 +170,7 @@ export function PostAccord({ post, className, ProfilID }: { post: any, className
                                     )}
                                 </div>
 
-                                <div className="flex flex-col items-center gap-2 bg-red-200 rounded-lg justify-center p-0 m-0 h-20">
+                                <div className="flex flex-col items-center gap-2 bg-primary-200 rounded-lg justify-center p-0 m-0 h-20">
                                     <ToggleGroup
                                         type="single"
                                         variant="outline"
@@ -202,7 +202,7 @@ export function PostAccord({ post, className, ProfilID }: { post: any, className
                         </AccordionContent>
                     </AccordionItem>
 
-                    <AccordionItem value={`comments-${post.ID}`} className="border-t bg-red-50 py-3 px-4 w-full rounded-b-3xl">
+                    <AccordionItem value={`comments-${post.ID}`} className="border-t bg-primary-50 py-3 px-4 w-full rounded-b-3xl">
                         <CommentsAccord
                             postID={post.ID}
                             commentsList={post.comments}
@@ -254,7 +254,7 @@ export function PostDeletion({ mypost, ID, className, open, onOpenChange, isTrig
                 </div>
             </DialogTrigger>)}
 
-            <DialogContent className="bg-rose-100">
+            <DialogContent className="bg-accent-100">
                 <DialogHeader>
                     <DialogTitle>Biztosan törölni szeretnéd a posztot?</DialogTitle>
                     <DialogDescription>
@@ -347,7 +347,7 @@ export function PostModify({ mypost, post, className, open, onOpenChange, isTrig
 
             <DialogContent
                 className="
-                        bg-rose-100
+                        bg-accent-100
                         w-[95vw]
                         max-w-lg
                         max-h-[90vh]
@@ -377,7 +377,7 @@ export function PostModify({ mypost, post, className, open, onOpenChange, isTrig
                                         <Input
                                             placeholder="Add meg a címet..."
                                             {...field}
-                                            className="w-full bg-red-100 focus:bg-red-300 hover:bg-red-200"
+                                            className="w-full bg-primary-100 focus:bg-primary-300 hover:bg-primary-200"
                                         />
                                     </FormControl>
                                     <FormDescription>A bejegyzés címe</FormDescription>
@@ -396,7 +396,7 @@ export function PostModify({ mypost, post, className, open, onOpenChange, isTrig
                                         <Textarea
                                             placeholder="Írj valamit..."
                                             {...field}
-                                            className="w-full bg-red-100 focus:bg-red-300 hover:bg-red-200"
+                                            className="w-full bg-primary-100 focus:bg-primary-300 hover:bg-primary-200"
                                         />
                                     </FormControl>
                                     <FormDescription>Legfeljebb 1000 karakter.</FormDescription>
@@ -409,7 +409,7 @@ export function PostModify({ mypost, post, className, open, onOpenChange, isTrig
                             control={form.control}
                             name="media"
                             render={({ field }) => (
-                                <FormItem className="w-full min-w-0 bg-red-100 focus:bg-red-300 hover:bg-red-200 p-3 rounded-lg">
+                                <FormItem className="w-full min-w-0 bg-primary-100 focus:bg-primary-300 hover:bg-primary-200 p-3 rounded-lg">
                                     <FormLabel>Kép feltöltése (opcionális)</FormLabel>
 
                                     <FormControl>
@@ -478,7 +478,7 @@ export function PostModify({ mypost, post, className, open, onOpenChange, isTrig
                                     )}
 
                                     {form.watch("mediaDeleted") && (
-                                        <p className="text-sm text-red-700 mt-1 break-words">
+                                        <p className="text-sm text-primary-700 mt-1 break-words">
                                             A jelenlegi kép törlésre kerül mentéskor.
                                         </p>
                                     )}
@@ -502,11 +502,11 @@ export function PostModify({ mypost, post, className, open, onOpenChange, isTrig
 
                         <DialogFooter className="flex-col sm:flex-row gap-2 sm:justify-start">
                             <DialogClose asChild>
-                                <Button type="button" className="bg-red-400 w-full sm:w-auto">
+                                <Button type="button" className="bg-primary-400 w-full sm:w-auto">
                                     Bezárás
                                 </Button>
                             </DialogClose>
-                            <Button type="submit" className="bg-red-400 w-full sm:w-auto">
+                            <Button type="submit" className="bg-primary-400 w-full sm:w-auto">
                                 Küldés
                             </Button>
                         </DialogFooter>

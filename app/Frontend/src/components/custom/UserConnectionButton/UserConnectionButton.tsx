@@ -19,7 +19,7 @@ export function ReqFriend({ className, userID }: { className?: string, userID: n
         }
     })
     return (
-        <Button className={`bg-red-400 hover:bg-red-100 hover:text-red-800 ${className}`} onClick={!isPending ? () => addFriend({ id: userID }) : () => null}>
+        <Button className={`bg-primary-400 hover:bg-primary-100 hover:text-primary-800 ${className}`} onClick={!isPending ? () => addFriend({ id: userID }) : () => null}>
             {isPending ? <Spinner /> :
                 <>
                     <UserPlus className='text-black' />Barát hozzáadása
