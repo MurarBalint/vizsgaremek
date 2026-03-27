@@ -38,7 +38,7 @@ export function ForgetPasswordModal() {
                 Elfelejtette jelszavát?
             </a>
 
-            <DialogContent className="bg-red-100">
+            <DialogContent className="bg-primary-100">
                 <DialogTitle>
                     Jelszó-visszaállítás
                 </DialogTitle>

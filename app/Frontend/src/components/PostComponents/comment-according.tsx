@@ -61,18 +61,18 @@ export function CommentsAccord({ postID, commentsList, ProfilID }: { postID: num
                         render={({ field }) => (
                             <FormItem className='w-full px-3 m-0 px-2'>
                                 <FormControl>
-                                    <Input placeholder="Írj egy kommentet..." {...field} type="text" className="w-full rounded-md border px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 m-3" />
+                                    <Input placeholder="Írj egy kommentet..." {...field} type="text" className="w-full rounded-md border px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 m-3" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
-                    <Button className="ml-2 border px-3 bg-red-200 mt-3" variant="ghost" type='submit'>Küldés</Button>
+                    <Button className="ml-2 border px-3 bg-primary-200 mt-3" variant="ghost" type='submit'>Küldés</Button>
                 </form>
             </Form>
             <AccordionTrigger>
                 <div className='border-b w-full text-ml font-semibold pb-2'>
-                    Kommentek: (<span className='text-red-500'>{commentsList?.length === 0 ? "nincs" : `${commentsList?.length} darab`} megjegyzés</span>)
+                    Kommentek: (<span className='text-primary-500'>{commentsList?.length === 0 ? "nincs" : `${commentsList?.length} darab`} megjegyzés</span>)
                 </div>
             </AccordionTrigger>
 

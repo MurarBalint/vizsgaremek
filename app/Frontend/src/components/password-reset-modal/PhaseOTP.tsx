@@ -29,7 +29,7 @@ export function PhaseOTP({ email, onSuccess }: { email: string, onSuccess: (acco
     return (
         <div className="space-y-4">
 
-            <h2 className="text-lg font-semibold text-red-700">
+            <h2 className="text-lg font-semibold text-primary-700">
                 Írd be a 6 jegyű kódot
             </h2>
 
@@ -46,10 +46,10 @@ export function PhaseOTP({ email, onSuccess }: { email: string, onSuccess: (acco
                             key={i}
                             index={i}
                             className="
-                                border-red-400
-                                focus:border-red-600 
-                                focus:ring-red-500
-                                bg-red-50
+                                border-primary-400
+                                focus:border-primary-600 
+                                focus:ring-primary-500
+                                bg-primary-50
                                 rounded-md
                                 text-lg
                                 w-10 h-12
@@ -61,7 +61,7 @@ export function PhaseOTP({ email, onSuccess }: { email: string, onSuccess: (acco
                 </InputOTPGroup>
             </InputOTP>
 
-            <Button onClick={check}className="w-full bg-red-500 hover:bg-red-600 text-white">
+            <Button onClick={check}className="w-full bg-primary-500 hover:bg-primary-600 text-white">
                 Ellenőrzés
             </Button>
         </div>
