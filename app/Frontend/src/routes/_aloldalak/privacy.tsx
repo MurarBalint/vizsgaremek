@@ -87,10 +87,7 @@ function RouteComponent() {
                                 Ha kérdésed van az adatkezeléssel vagy jogi feltételekkel kapcsolatban, kérjük, vedd fel velünk a kapcsolatot:
                             </p>
                             <p className="text-gray-700 font-semibold">
-                                Email: <a href="mailto:privacy@mihirunk.hu" className="underline text-primary-900">privacy@mihirunk.hu</a>
-                            </p>
-                            <p className="text-gray-700 font-semibold">
-                                Telefon: +36 20 123 4567
+                                Email: <a href="mailto:hartwig-matos.david@ckik.hu" className="underline text-primary-900">hartwig-matos.david@ckik.hu</a>
                             </p>
                         </div>
 
