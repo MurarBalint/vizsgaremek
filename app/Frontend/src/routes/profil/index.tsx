@@ -117,13 +117,13 @@ function RouteComponent() {
   return (
     <DefaultUIFrame className="p-6">
       {/* fontos: a gyerek töltse ki a DefaultUIFrame belső magasságát */}
-      <div className="h-full min-h-0 flex flex-col bg-red-50 rounded-xl">
+      <div className="h-full min-h-0 flex flex-col bg-primary-50 rounded-xl">
         {/* kereső fixen felül */}
-        <div className="flex items-center gap-2 bg-red-50 px-3 py-2 rounded-md shrink-0">
+        <div className="flex items-center gap-2 bg-primary-50 px-3 py-2 rounded-md shrink-0">
           <Input
             type="text"
             placeholder="Felhasználónév"
-            className="h-8 bg-rose-200"
+            className="h-8 bg-accent-200"
             value={search}
             onInput={(e) => setSearch((e.target as HTMLInputElement).value)}
           />
@@ -141,7 +141,7 @@ function RouteComponent() {
                 ))}
 
                 {debounced.length >= 3 && items.length === 0 && (
-                  <div className="mt-4 text-sm opacity-70 bg-rose-100 p-2 rounded-xl">
+                  <div className="mt-4 text-sm opacity-70 bg-accent-100 p-2 rounded-xl">
                     Nincs találat.
                   </div>
                 )}
@@ -151,7 +151,7 @@ function RouteComponent() {
 
           {/* Pagination is bent van a scrollban, de a pb-28 miatt nem takarja a footer */}
           {debounced.length >= 3 && totalPages > 1 && (
-            <div className="bg-red-200 p-3 rounded-xl m-2">
+            <div className="bg-primary-200 p-3 rounded-xl m-2">
               <Pagination className="mt-2">
                 <PaginationContent>
                   <PaginationItem>

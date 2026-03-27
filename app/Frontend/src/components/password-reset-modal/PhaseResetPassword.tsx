@@ -35,7 +35,7 @@ const formSchema = z
 
 export function PhaseResetPassword({ onSuccess, user }: { onSuccess: () => void, user: PR_User | undefined }) {
     const [secureMode, setSecureMode] = useState(false)
-    if (!user) return <p className="text-red-600">Hiba: Nincs kiválasztott felhasználó.</p>
+    if (!user) return <p className="text-primary-600">Hiba: Nincs kiválasztott felhasználó.</p>
     const { mutate: UpdatePassword } = useMutation({
         mutationFn: (password: string) => ChangePassword({ userId: user.ID, password }),
         onSuccess() {

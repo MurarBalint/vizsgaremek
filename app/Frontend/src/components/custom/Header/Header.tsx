@@ -87,7 +87,7 @@ export default function Header({ className }: { className?: string }) {
   })
 
   return (
-    <header className={`p-4 bg-red-950 text-white flex items-center justify-between z-99 ${className}`}>
+    <header className={`p-4 bg-primary-950 text-white flex items-center justify-between z-99 ${className}`}>
       <Link to="/"><h1 className="text-3xl font-bold text-left p-2 pr-10">Mi Hírünk</h1></Link>
       {
         ShowHamburgermanu ? <>
@@ -97,37 +97,37 @@ export default function Header({ className }: { className?: string }) {
 
                 {/* Kezdőlap */}
                 <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} text-white bg-red-900`}>
+                  <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} text-white bg-primary-900`}>
                     <Link to="/">Kezdőlap</Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 {/* Profil */}
                 <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} text-white bg-red-900`}>
+                  <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} text-white bg-primary-900`}>
                     <Link to="/profil/$profilId" params={{ profilId: String(auth?.data.userID) }}>Profil</Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 {/* Barátok */}
                 <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} text-white bg-red-900`}>
+                  <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} text-white bg-primary-900`}>
                     <Link to="/connections">Kapcsolatok</Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 {/* Search */}
                 <NavigationMenuItem>
                   {!ShowSearchBar ? (
-                    <div className="flex items-center gap-2 bg-red-900 px-3 py-2 rounded-md">
+                    <div className="flex items-center gap-2 bg-primary-900 px-3 py-2 rounded-md">
                       <Input type="text" placeholder="Felhasználónév" className="h-8" value={search}
                         onChange={(e) => setSearch(e.target.value)} />
-                      <Button type="submit" variant="link" className="h-8 bg-rose-100" onClick={() => { nav({ to: "/profil/$profilId", params: { profilId: search } }) }}>
+                      <Button type="submit" variant="link" className="h-8 bg-accent-100" onClick={() => { nav({ to: "/profil/$profilId", params: { profilId: search } }) }}>
                         Keres
                       </Button>
                     </div>
                   ) :
                     (
-                      <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} text-white bg-red-900`}>
+                      <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} text-white bg-primary-900`}>
                         <Link to="/profil" search={{ page: 1, q: "", pageSize: 12 }} >Keres fiókot</Link>
                       </NavigationMenuLink>
                     )}
@@ -138,8 +138,8 @@ export default function Header({ className }: { className?: string }) {
                 <NavigationMenuItem>
                   {ShowSettings ?
                     <>
-                      <NavigationMenuTrigger className="text-white bg-red-900"><Link to="/settings">Beállítások</Link></NavigationMenuTrigger>
-                      <NavigationMenuContent className="bg-red-300! text-white border-red-800 absolute ">
+                      <NavigationMenuTrigger className="text-white bg-primary-900"><Link to="/settings">Beállítások</Link></NavigationMenuTrigger>
+                      <NavigationMenuContent className="bg-primary-300! text-white border-primary-800 absolute ">
                         <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-1 lg:w-[600px] text-black">
                           {components.map((component) => (
                             <ListItem key={component.title} title={component.title} to={component.to}>
@@ -150,7 +150,7 @@ export default function Header({ className }: { className?: string }) {
                       </NavigationMenuContent>
                     </>
                     :
-                    <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} text-white bg-red-900`}>
+                    <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} text-white bg-primary-900`}>
                       <Link to="/settings">Beállítások</Link>
                     </NavigationMenuLink>
                   }
@@ -158,12 +158,12 @@ export default function Header({ className }: { className?: string }) {
               </NavigationMenuList>
             </NavigationMenu>
           </div>
-          <div className="bg-red-700 rounded-md p-1">
+          <div className="bg-primary-700 rounded-md p-1">
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button variant="outline" className="bg-slate-200 text-black hover:text-white hover:bg-slate-600">Kijelentkezés</Button>
               </AlertDialogTrigger>
-              <AlertDialogContent className="bg-rose-100">
+              <AlertDialogContent className="bg-accent-100">
                 <AlertDialogHeader>
                   <AlertDialogTitle>Biztos kijelentkezel?</AlertDialogTitle>
                   <AlertDialogDescription>
@@ -181,47 +181,47 @@ export default function Header({ className }: { className?: string }) {
           :
           <>
             <Sheet>
-              <SheetTrigger className="bg-red-200 rounded-full w-10 h-10 flex items-center justify-center"><Menu className="size-6 text-black rounded-full" /></SheetTrigger>
-              <SheetContent className="z-999 bg-red-200">
-                <SheetHeader className="bg-red-400">
-                  <SheetTitle className="text-black rounded-full bg-red-300 w-30 text-center">A fiókóm</SheetTitle>
+              <SheetTrigger className="bg-primary-200 rounded-full w-10 h-10 flex items-center justify-center"><Menu className="size-6 text-black rounded-full" /></SheetTrigger>
+              <SheetContent className="z-999 bg-primary-200">
+                <SheetHeader className="bg-primary-400">
+                  <SheetTitle className="text-black rounded-full bg-primary-300 w-30 text-center">A fiókóm</SheetTitle>
                 </SheetHeader>
                 <div className="mt-6 flex flex-col gap-2">
                   <Link
                     to="/"
-                    className="px-4 py-2 rounded hover:bg-red-100 bg-red-300"
+                    className="px-4 py-2 rounded hover:bg-primary-100 bg-primary-300"
                   >
                     Kezdő oldal
                   </Link>
                   <Link
                     params={{ profilId: String(auth?.data.userID) }}
                     to="/profil/$profilId"
-                    className="px-4 py-2 rounded hover:bg-red-100 bg-red-300"
+                    className="px-4 py-2 rounded hover:bg-primary-100 bg-primary-300"
                   >
-                    <User className="bg-red-200 rounded-full" />Profil
+                    <User className="bg-primary-200 rounded-full" />Profil
                   </Link>
                   <Link
                     to="/connections"
-                    className="px-4 py-2 rounded hover:bg-red-100 bg-red-300"
+                    className="px-4 py-2 rounded hover:bg-primary-100 bg-primary-300"
                   >
-                    <Users className="bg-red-200 rounded-full" />Barátok
+                    <Users className="bg-primary-200 rounded-full" />Barátok
                   </Link>
                   <Link
                     to="/profil"
-                    className="px-4 py-2 rounded hover:bg-red-100 bg-red-300"
+                    className="px-4 py-2 rounded hover:bg-primary-100 bg-primary-300"
                     search={{ page: 1, q: "", pageSize: 12 }}
                   >
-                    <Users className="bg-red-200 rounded-full" />Fiók keresés
+                    <Users className="bg-primary-200 rounded-full" />Fiók keresés
                   </Link>
                   <Link
                     to="/settings"
-                    className="px-4 py-2 rounded hover:bg-red-100 bg-red-300"
+                    className="px-4 py-2 rounded hover:bg-primary-100 bg-primary-300"
                   >
-                    <Settings className="bg-red-200 rounded-full" />Beállítások
+                    <Settings className="bg-primary-200 rounded-full" />Beállítások
                   </Link>
                   <button
                     onClick={() => logut()}
-                    className="px-4 py-2 rounded text-red-600 hover:bg-red-400 hover:text-white bg-red-100"
+                    className="px-4 py-2 rounded text-primary-600 hover:bg-primary-400 hover:text-white bg-primary-100"
                   >
                     Kijelentkezés
                   </button>

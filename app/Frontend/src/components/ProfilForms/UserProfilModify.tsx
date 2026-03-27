@@ -127,9 +127,9 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
     return (
         <Dialog onOpenChange={SETDEFAULTDATA}>
             <DialogTrigger asChild >
-                <Button className='bg-red-400 hover:bg-red-100 hover:text-red-800' ><PenLine className='text-black' />Profil módosítása</Button>
+                <Button className='bg-primary-400 hover:bg-primary-100 hover:text-primary-800' ><PenLine className='text-black' />Profil módosítása</Button>
             </DialogTrigger>
-            <DialogContent className="bg-red-100 z-999 max-h-[90vh] overflow-y-auto">
+            <DialogContent className="bg-primary-100 z-999 max-h-[90vh] overflow-y-auto">
                 <DialogTitle className="display-none" />
                 <div className="h-max ">
                     <Form {...form}>
@@ -145,7 +145,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
                                     <FormItem>
                                         <FormLabel htmlFor="last_name">Vezetéknév *</FormLabel>
                                         <FormControl>
-                                            <Input id="last_name" className="bg-rose-200" {...field} required />
+                                            <Input id="last_name" className="bg-accent-200" {...field} required />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -158,7 +158,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
                                     <FormItem>
                                         <FormLabel htmlFor="firstName">Keresztnév *</FormLabel>
                                         <FormControl>
-                                            <Input id="firstName" className="bg-rose-200" {...field} required />
+                                            <Input id="firstName" className="bg-accent-200" {...field} required />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -171,7 +171,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
                                     <FormItem>
                                         <FormLabel htmlFor="schools">Iskolák</FormLabel>
                                         <FormControl>
-                                            <Input id="schools" className="bg-rose-200" {...field} placeholder="Pl. ELTE, BME" />
+                                            <Input id="schools" className="bg-accent-200" {...field} placeholder="Pl. ELTE, BME" />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -184,7 +184,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
                                     <FormItem>
                                         <FormLabel htmlFor="birthdate">Születési dátum</FormLabel>
                                         <FormControl>
-                                            <Input id="birthdate" type="date" className="bg-rose-200" max={birthDayMax} min={birthDayMin} {...field} />
+                                            <Input id="birthdate" type="date" className="bg-accent-200" max={birthDayMax} min={birthDayMin} {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -197,7 +197,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
                                     <FormItem>
                                         <FormLabel htmlFor="birthPlace" >Születési hely</FormLabel>
                                         <FormControl>
-                                            <Input id="birthPlace" className="bg-rose-200" {...field} />
+                                            <Input id="birthPlace" className="bg-accent-200" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -246,7 +246,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
                                                         });
                                                     }
                                                 }}
-                                                className="bg-rose-200"
+                                                className="bg-accent-200"
                                             />
                                         </FormControl>
 
@@ -282,7 +282,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
                                     <FormItem>
                                         <FormLabel htmlFor="bio">Bio</FormLabel>
                                         <FormControl>
-                                            <Input id="bio" className="bg-rose-200" {...field} placeholder="Rövid bemutatkozás" />
+                                            <Input id="bio" className="bg-accent-200" {...field} placeholder="Rövid bemutatkozás" />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -291,7 +291,7 @@ export function UserProfileModify({ id, myuserdata }: { id: number, myuserdata: 
                             {isPending ? <Loader /> : ""}
                             <Field>
                                 <FieldDescription className="px-6 text-center">
-                                    <Button type="submit" className="bg-red-400 text-black hover:bg-red-50">Profil módosítása</Button>
+                                    <Button type="submit" className="bg-primary-400 text-black hover:bg-primary-50">Profil módosítása</Button>
                                 </FieldDescription>
                             </Field>
                         </form>

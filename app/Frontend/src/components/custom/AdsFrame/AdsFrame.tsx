@@ -30,8 +30,8 @@ export default function AdsFrame({
             className={[
                 "border-gray-300",
                 isBottom
-                    ? "w-full h-full p-2 flex items-center justify-between gap-3 border-2 border-red-400 bg-red-900"
-                    : "w-[300px] p-4 bg-red-950",
+                    ? "w-full h-full p-2 flex items-center justify-between gap-3 border-2 border-primary-400 bg-primary-900"
+                    : "w-[300px] p-4 bg-primary-950",
                 className ?? "",
             ].join(" ")}
         >
@@ -42,7 +42,7 @@ export default function AdsFrame({
             {isError ? (
                 <p
                     className={[
-                        "text-red-900 bg-rose-50 font-bold text-center rounded",
+                        "text-primary-900 bg-accent-50 font-bold text-center rounded",
                         isBottom ? "p-2 text-xs m-0" : "m-2 p-2",
                     ].join(" ")}
                 >

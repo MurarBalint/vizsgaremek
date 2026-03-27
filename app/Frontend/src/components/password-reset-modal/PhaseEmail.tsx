@@ -58,25 +58,25 @@ export function PhaseEmail({ onSuccess }: { onSuccess: (email: string) => void }
                     name="email"
                     render={({ field }) => (
                         <FormItem className="space-y-2">
-                            <FormLabel className="text-red-600">Email cím</FormLabel>
+                            <FormLabel className="text-primary-600">Email cím</FormLabel>
                             <FormControl>
                                 <Input
                                     type="email"
                                     placeholder="pelda@domain.hu"
-                                    className="border-red-400 focus:border-red-600 focus:ring-red-500 bg-red-50 rounded-md"
+                                    className="border-primary-400 focus:border-primary-600 focus:ring-primary-500 bg-primary-50 rounded-md"
                                     {...field}
                                 />
                             </FormControl>
-                            <FormDescription className="text-red-500">
+                            <FormDescription className="text-primary-500">
                                 Add meg az email címedet, ahová a visszaállító kódot küldjük.
                             </FormDescription>
-                            <FormMessage className="text-red-600" />
+                            <FormMessage className="text-primary-600" />
                         </FormItem>
                     )}
                 />
                 <Button
                     type="submit"
-                    className="w-full bg-red-500 hover:bg-red-600 text-white"
+                    className="w-full bg-primary-500 hover:bg-primary-600 text-white"
                 >
                     Tovább
                 </Button>

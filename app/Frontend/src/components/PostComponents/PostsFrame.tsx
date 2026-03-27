@@ -49,7 +49,7 @@ export function PostsFrame() {
         <ScrollArea className="m-1! max-w-full h-full bg-white rounded-3xl">
             {status === "error" ?
                 <>
-                    <Card className='bg-red-200  rounded-xl p-4 m-20'>
+                    <Card className='bg-primary-200  rounded-xl p-4 m-20'>
                         <CardHeader>
                             <CardTitle>Hiba</CardTitle>
                         </CardHeader>
