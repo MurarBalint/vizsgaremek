@@ -1,1 +1,0 @@
-import{au as r,u as n,r as o,j as a,az as i,e as f}from"./index-CpSO9axe.js";function x({children:u}){const e=r(),{data:t,isLoading:s}=n({queryKey:["auth-status"],queryFn:f,retry:0,refetchOnWindowFocus:!1});return o.useEffect(()=>{!s&&t?.status!==200&&e({to:"/"})},[s,t,e]),s?a.jsx(i,{}):t?.status!==200?null:a.jsx(a.Fragment,{children:u})}export{x as A};

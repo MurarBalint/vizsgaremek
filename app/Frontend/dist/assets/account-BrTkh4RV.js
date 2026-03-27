@@ -1,0 +1,1 @@
+import{j as o,a3 as t,a6 as n}from"./index-CrCZ9vMm.js";import{A as s}from"./AuthGuard-C1IX2rwI.js";function r(){return o.jsx(t,{children:o.jsx(n,{})})}const a=()=>o.jsx(s,{children:o.jsx(r,{})});export{a as component};

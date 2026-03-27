@@ -1,1 +1,0 @@
-import{j as t,a3 as o,a5 as s}from"./index-CpSO9axe.js";import{A as n}from"./AuthGuard-CXEgJYpl.js";function e(){return t.jsx(o,{children:t.jsx(s,{})})}const a=()=>t.jsx(n,{children:t.jsx(e,{})});export{a as component};

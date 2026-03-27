@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "@fontsource-variable/merriweather";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark *), &:is(.secret-dark *));
 
 @theme inline {
     --font-heading: var(--font-serif);
