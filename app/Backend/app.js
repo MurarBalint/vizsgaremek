@@ -80,7 +80,11 @@ const allowedOrigin = process.env.FRONTEND_ORIGIN || "http://localhost:3000";
 // =========================
 // Core security middleware
 // =========================
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  })
+);
 
 app.use(cors({
     origin: allowedOrigin,
