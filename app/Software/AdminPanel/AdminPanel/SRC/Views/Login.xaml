@@ -213,6 +213,13 @@
                             TextWrapping="Wrap"
                             TextAlignment="Center"
                         />
+                    <ComboBox   
+                        Background="Transparent" 
+                        ItemsSource="{Binding AvailableServers}"
+                        SelectedItem="{Binding SelectedServer}"
+                        Padding="1"
+                        FontSize="14" 
+                        FontFamily="Montserrat"/>
                     <Button x:Name="btnLogin"
                             Command="{Binding LoginCommand}"
                             BorderThickness="0"

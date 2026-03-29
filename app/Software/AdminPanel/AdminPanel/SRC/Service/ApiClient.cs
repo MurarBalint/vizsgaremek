@@ -18,10 +18,20 @@ namespace AdminPanel.SRC.Service
             CookieContainer = _cookieContainer
         };
 
-        public static HttpClient Client { get; } = new HttpClient(_handler)
+        public static HttpClient Client { get; } = new HttpClient(_handler);
+
+        static ApiClient()
         {
-            BaseAddress = new Uri("http://217.76.61.147")
-        };
+            Client.BaseAddress = new Uri("http://217.76.61.147");
+        }
+
+        public static void SetBaseAddress(string url)
+        {
+            Client.BaseAddress = new Uri(url);
+            // Clear cookies when switching servers
+            _cookieContainer.GetCookies(new Uri(Client.BaseAddress.ToString()));
+        }
+
         public static string? NormalizeImageUrl(string? url)
         {
             if (string.IsNullOrWhiteSpace(url))

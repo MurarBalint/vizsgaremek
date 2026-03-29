@@ -41,5 +41,26 @@ namespace AdminPanel.SRC.Service
 
             return await response.Content.ReadFromJsonAsync<LoginResponseModel>();
         }
+
+        public async Task<LoginResponseModel?> LoginAsExaminerAsync(string username, string password)
+        {
+            var requestBody = new
+            {
+                username,
+                password
+            };
+
+            var response = await _httpClient.PostAsJsonAsync("api/auth/login/examiner", requestBody);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorObj = await response.Content.ReadFromJsonAsync<ErrorResponseModel>();
+                throw new Exception(
+                    errorObj?.Message ?? "Ismeretlen hiba történt."
+                );
+            }
+
+            return await response.Content.ReadFromJsonAsync<LoginResponseModel>();
+        }
     }
 }
