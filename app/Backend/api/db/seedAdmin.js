@@ -25,7 +25,7 @@ const EXAMPLE_ACCOUNT = {
   role: "user",
 };
 
-function makeTestUsers(count = 60, startIndex = 1) {
+function makeTestUsers(count = 30, startIndex = 1) {
   // user1...user60 (vagy startIndex-től)
   return Array.from({ length: count }, (_, i) => {
     const n = startIndex + i;
