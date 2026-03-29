@@ -25,21 +25,20 @@ namespace AdminPanel.SRC.ViewModel
 
         public override string ToString() => Name;
     }
+
     public class LoginViewModel : ViewModelBase
     {
-        // Fields
+        //Fields
         private string _username;
         private SecureString _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
-        private UserRole _selectedRole;
         private ServerConfig _selectedServer;
 
         private readonly AuthApiService _authApiService;
         public ObservableCollection<ServerConfig> AvailableServers { get; }
-        public ObservableCollection<UserRole> AvailableRoles { get; }
 
-        // Properties
+        //Properties
         public string Username
         {
             get => _username;
@@ -80,17 +79,6 @@ namespace AdminPanel.SRC.ViewModel
             }
         }
 
-        public UserRole SelectedRole
-        {
-            get => _selectedRole;
-            set
-            {
-                _selectedRole = value;
-                OnPropertyChanged(nameof(SelectedRole));
-                OnPropertyChanged(nameof(LoginCommand));
-            }
-        }
-
         public ServerConfig SelectedServer
         {
             get => _selectedServer;
@@ -105,11 +93,10 @@ namespace AdminPanel.SRC.ViewModel
             }
         }
 
-        // Commands
+        //-> Commands
         public ICommand LoginCommand { get; }
-        public ICommand ShowPasswordCommand { get; }
 
-        // Constructor
+        //Constructor
         public LoginViewModel()
         {
             _username = string.Empty;
@@ -119,21 +106,13 @@ namespace AdminPanel.SRC.ViewModel
             // Initialize servers
             AvailableServers = new ObservableCollection<ServerConfig>
             {
-                new ServerConfig("Mihirunk.hu", "https://217.76.61.147"),
+                new ServerConfig("Mihirunk.hu", "https://mihirunk.hu"),
                 new ServerConfig("Fejlesztői", "http://localhost:6769")
             };
 
-            // Initialize roles
-            AvailableRoles = new ObservableCollection<UserRole>
-            {
-                new UserRole { Name = "Admin", Value = "admin" },
-                new UserRole { Name = "Examiner", Value = "examiner" }
-            };
-
-            // Set defaults
+            // Set default server
             _selectedServer = AvailableServers[0];
             ApiClient.SetBaseAddress(_selectedServer.Url);
-            _selectedRole = AvailableRoles[0];
 
             _authApiService = new AuthApiService();
             LoginCommand = new ViewModelCommand(async (o) => await ExecuteLoginCommand(), CanExecuteLoginCommand);
@@ -145,7 +124,6 @@ namespace AdminPanel.SRC.ViewModel
                    && Username.Length >= 3
                    && Password != null
                    && Password.Length >= 3
-                   && SelectedRole != null
                    && SelectedServer != null;
         }
 
@@ -157,14 +135,11 @@ namespace AdminPanel.SRC.ViewModel
 
                 string plainPassword = ConvertToUnsecureString(Password);
 
-                // Determine which login endpoint to use based on role
-                var result = SelectedRole.Value == "admin"
-                    ? await _authApiService.LoginAsAdminAsync(Username, plainPassword)
-                    : await _authApiService.LoginAsExaminerAsync(Username, plainPassword);
+                var result = await _authApiService.LoginAsAdminAsync(Username, plainPassword);
 
                 if (result != null && !string.IsNullOrWhiteSpace(result.Token))
                 {
-                    MessageBox.Show($"Sikeres bejelentkezés! Szerep: {SelectedRole.Name}");
+                    MessageBox.Show("Sikeres bejelentkezés!");
                     IsViewVisible = false;
                 }
                 else
@@ -195,13 +170,5 @@ namespace AdminPanel.SRC.ViewModel
                 Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
             }
         }
-    }
-
-    public class UserRole
-    {
-        public string Name { get; set; }
-        public string Value { get; set; }
-
-        public override string ToString() => Name;
     }
 }

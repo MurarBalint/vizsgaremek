@@ -28,8 +28,6 @@ namespace AdminPanel.SRC.Service
         public static void SetBaseAddress(string url)
         {
             Client.BaseAddress = new Uri(url);
-            // Clear cookies when switching servers
-            _cookieContainer.GetCookies(new Uri(Client.BaseAddress.ToString()));
         }
 
         public static string? NormalizeImageUrl(string? url)
