@@ -207,7 +207,7 @@ describe("/api/auth", () => {
                     .send(user)
                     .expect(404);
 
-                expect(res.body.message).toEqual("Nincs ilyen felhasználó");
+                expect(res.body.message).toEqual("Hibás jelszó, felhasználónév!");
             });
 
             test("should throw error on bad password", async () => {
@@ -218,7 +218,7 @@ describe("/api/auth", () => {
                     .send(user)
                     .expect(400);
 
-                expect(res.body.message).toEqual("Hibás jelszó");
+                expect(res.body.message).toEqual("Hibás jelszó, felhasználónév!");
             });
         });
         describe("POST /api/auth/login/admin", () => {
@@ -282,7 +282,7 @@ describe("/api/auth", () => {
                     .send(user)
                     .expect(404);
 
-                expect(res.body.message).toEqual("Nincs ilyen felhasználó");
+                expect(res.body.message).toEqual("Hibás jelszó, felhasználónév!");
             });
 
             test("should throw error on bad password", async () => {
@@ -293,7 +293,7 @@ describe("/api/auth", () => {
                     .send(user)
                     .expect(400);
 
-                expect(res.body.message).toEqual("Hibás jelszó");
+                expect(res.body.message).toEqual("Hibás jelszó, felhasználónév!");
             });
         });
 

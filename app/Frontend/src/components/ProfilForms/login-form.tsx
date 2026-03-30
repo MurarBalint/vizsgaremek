@@ -69,8 +69,8 @@ export function LoginForm({ className, onSwitch, ...props }: LoginFormProps) {
       toast.success("Sikeres bejelentkezés!")
       nav({ to: "/", reloadDocument: true });
     },
-    onError: () => {
-      toast.error("Hiba történt a bejelentkezés során.")
+    onError: (error: any) => {
+      toast.error("Hiba történt a bejelentkezés során: "+error.response.data.message)
     },
   })
 

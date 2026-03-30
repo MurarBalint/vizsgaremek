@@ -103,12 +103,12 @@ class AuthService {
 
         const user = await this.userService.getUserByUsername(username, transaction);
         if (!user) {
-            throw new NotFoundError("Nincs ilyen felhasználó");
+            throw new NotFoundError("Hibás jelszó, felhasználónév!");
         }
 
 
         if (!bcrypt.compareSync(password, user.password_hash)) {
-            throw new BadRequestError("Hibás jelszó");
+            throw new BadRequestError("Hibás jelszó, felhasználónév!");
         }
 
         await this.userService.updateLastLogin(user.ID, { is_loggedIn: true, last_login: new Date() }, transaction);
@@ -140,14 +140,14 @@ class AuthService {
 
         const user = await this.userService.getUserByUsername(username, transaction);
         if (!user) {
-            throw new NotFoundError("Nincs ilyen felhasználó");
+            throw new NotFoundError("Hibás jelszó, felhasználónév!");
         }
         if (user.role == "user") {
-            throw new NotFoundError("Nincs ilyen felhasználó");
+            throw new NotFoundError("Nincs ilyen moderátori felhasználói fiók");
         }
 
         if (!bcrypt.compareSync(password, user.password_hash)) {
-            throw new BadRequestError("Hibás jelszó");
+            throw new BadRequestError("Hibás jelszó, felhasználónév!");
         }
 
         await this.userService.updateLastLogin(user.ID, { is_loggedIn: true, last_login: new Date() }, transaction);

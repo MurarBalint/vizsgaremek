@@ -22,3 +22,4 @@ catch (error) {
     console.error(error);
 
 }
+console.log("Sikeres DB készitése ki léphetsz!");
