@@ -11,7 +11,8 @@
     ResizeMode="NoResize" WindowStyle="None"
     WindowStartupLocation="CenterScreen"
     Background="Transparent"
-    AllowsTransparency="True">
+    AllowsTransparency="True"
+    Icon="/Images/app-icon.png">
 
     <Window.DataContext>
         <viewModel:LoginViewModel />
