@@ -95,7 +95,7 @@ async function seedAdminUser(db) {
         last_name: "User",
         avatar_url: DEFAULT_AVATAR,
       },
-      ...makeTestUsers(60, 1),
+      ...makeTestUsers(30, 1),
     ];
 
     for (const u of usersToSeed) {
